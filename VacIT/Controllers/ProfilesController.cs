@@ -16,26 +16,26 @@ namespace VacIT.Controllers
 
         public ProfilesController(VacITContext context)
         {
-            _context = context;
+            this._context = context;
         }
 
         // GET: Profiles
         public async Task<IActionResult> Index()
         {
-              return _context.Profile != null ? 
-                          View(await _context.Profile.ToListAsync()) :
+              return _context.Profiles != null ? 
+                          View(await _context.Profiles.ToListAsync()) :
                           Problem("Entity set 'VacITContext.Profile'  is null.");
         }
 
         // GET: Profiles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Profile == null)
+            if (id == null || _context.Profiles == null)
             {
                 return NotFound();
             }
 
-            var profile = await _context.Profile
+            var profile = await _context.Profiles
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (profile == null)
             {
@@ -56,7 +56,7 @@ namespace VacIT.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Email,BirthDate,Phone,Address,Zipcode,Residence,Motivation,ProfilePic,CV")] Profile profile)
+        public async Task<IActionResult> Create([Bind("Id,ProfilePicURL,FirstName,LastName,Email,Password,BirthDate,Phone,Address,Zipcode,Residence,Motivation,CVURL")] Profile profile)
         {
             if (ModelState.IsValid)
             {
@@ -70,12 +70,12 @@ namespace VacIT.Controllers
         // GET: Profiles/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Profile == null)
+            if (id == null || _context.Profiles == null)
             {
                 return NotFound();
             }
 
-            var profile = await _context.Profile.FindAsync(id);
+            var profile = await _context.Profiles.FindAsync(id);
             if (profile == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace VacIT.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Email,BirthDate,Phone,Address,Zipcode,Residence,Motivation,ProfilePic,CV")] Profile profile)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ProfilePicURL,FirstName,LastName,Email,Password,BirthDate,Phone,Address,Zipcode,Residence,Motivation,CVURL")] Profile profile)
         {
             if (id != profile.Id)
             {
@@ -121,12 +121,12 @@ namespace VacIT.Controllers
         // GET: Profiles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Profile == null)
+            if (id == null || _context.Profiles == null)
             {
                 return NotFound();
             }
 
-            var profile = await _context.Profile
+            var profile = await _context.Profiles
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (profile == null)
             {
@@ -141,14 +141,14 @@ namespace VacIT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Profile == null)
+            if (_context.Profiles == null)
             {
                 return Problem("Entity set 'VacITContext.Profile'  is null.");
             }
-            var profile = await _context.Profile.FindAsync(id);
+            var profile = await _context.Profiles.FindAsync(id);
             if (profile != null)
             {
-                _context.Profile.Remove(profile);
+                _context.Profiles.Remove(profile);
             }
             
             await _context.SaveChangesAsync();
@@ -157,7 +157,7 @@ namespace VacIT.Controllers
 
         private bool ProfileExists(int id)
         {
-          return (_context.Profile?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Profiles?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -11,6 +11,12 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ProfilePicURL)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProfilePicURL)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
         <dd class = "col-sm-10">
@@ -27,6 +33,12 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Password)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.BirthDate)
@@ -65,16 +77,10 @@
             @Html.DisplayFor(model => model.Motivation)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProfilePic)
+            @Html.DisplayNameFor(model => model.CVURL)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProfilePic)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CV)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CV)
+            @Html.DisplayFor(model => model.CVURL)
         </dd>
     </dl>
 </div>

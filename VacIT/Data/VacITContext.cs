@@ -14,6 +14,8 @@ namespace VacIT.Data
         {
         }
 
-        public DbSet<VacIT.Models.Profile> Profile { get; set; } = default!;
+        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Employer> Employers { get; set; }
+        public DbSet<JobListing> JobListings { get; set; }
     }
 }
