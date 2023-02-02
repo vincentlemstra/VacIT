@@ -12,8 +12,8 @@ using VacIT.Data;
 namespace VacIT.Migrations
 {
     [DbContext(typeof(VacITContext))]
-    [Migration("20230202094646_AdditionalDbSet")]
-    partial class AdditionalDbSet
+    [Migration("20230202145659_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,6 +89,10 @@ namespace VacIT.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Level")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LogoURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

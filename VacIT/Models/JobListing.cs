@@ -13,6 +13,9 @@ namespace VacIT.Models
         [Display(Name = "Bedrijfsnaam")]
         public Employer Employer { get; set; }
 
+        [Display(Name = "Logo URL")]
+        public string LogoURL { get; set; }
+
         [Display(Name = "Functieomschrijving")]
         public string Name { get; set; }
         [Display(Name = "Niveau")]

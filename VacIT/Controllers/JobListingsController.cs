@@ -15,7 +15,8 @@ namespace VacIT.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var data = await _context.JobListings.ToListAsync();
+            //var data = await _context.JobListings.Include(n => n.Employer).OrderByDescending(n => n.Date).ToListAsync();
+            var data = await _context.JobListings.OrderByDescending(n => n.Date).ToListAsync();
             return View(data);
         }
     }

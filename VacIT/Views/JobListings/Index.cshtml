@@ -11,6 +11,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Employer.LogoURL)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
@@ -26,6 +29,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    <img class="rounded-cirle" src="@Url.Content(item.LogoURL)" alt="@item.Name" style="max-width: 150px" />
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
