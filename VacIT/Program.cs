@@ -9,6 +9,7 @@ builder.Services.AddDbContext<VacITContext>(options =>
 // Services configuration
 builder.Services.AddScoped<IJobListingsService, JobListingsService>();
 builder.Services.AddScoped<IProfilesService, ProfilesService>();
+builder.Services.AddScoped<IEmployersService, EmployersService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

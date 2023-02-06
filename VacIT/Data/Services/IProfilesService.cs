@@ -5,6 +5,5 @@ namespace VacIT.Data.Services
 {
     public interface IProfilesService : IEntityBaseRepository<Profile>
     {
-        
     }
 }
