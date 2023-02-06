@@ -40,3 +40,18 @@ body {
 .job-link img {
     max-width: 100px;
 }
+
+
+
+/*Detail page*/
+.detail-left img {
+    max-width: 150px;
+}
+
+.detail-right {
+
+}
+
+.detail-top {
+    padding: 25px 0px;
+}
