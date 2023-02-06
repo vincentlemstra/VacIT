@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using VacIT.Data;
 using VacIT.Data.Services;
 
 namespace VacIT.Controllers

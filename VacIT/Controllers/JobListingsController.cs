@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VacIT.Data.Services;
 using VacIT.Models;
 
@@ -40,7 +41,7 @@ namespace VacIT.Controllers
         // GET: JobListings/Details/1
         public async Task<IActionResult> Details(int id)
         {
-            var jobListingDetails = await _service.GetByIdAsync(id);
+            var jobListingDetails = await _service.GetJobListingByIdAsync(id);
             if (jobListingDetails == null)
             {
                 return View("NotFound");
