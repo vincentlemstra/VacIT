@@ -28,6 +28,33 @@
             <h3>@Model.Level - @Model.Residence</h3>
             <p>@Model.Description</p>
 
+            <br />
+            <a href="#"><h2>Solliciteer Direct!</h2></a>
+            <br />
+
+            <h4>Meer Vavatures van @Model.Employer.Name</h4>
+            <div class="row">
+                <div class="col-3">
+                    <p><strong>DATUM</strong></p>
+                </div>
+                <div class="col-6">
+                    <p><strong>VACATURE</strong></p>
+                </div>
+                <div class="col-3">
+                    <p><strong>NIVEU</strong></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <p>@Model.Employer.JobListings</p>
+                </div>
+                <div class="col-6">
+                    <p></p>
+                </div>
+                <div class="col-3">
+                    <p></p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

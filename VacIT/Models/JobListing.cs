@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using VacIT.Data.Base;
 
 namespace VacIT.Models
 {
-    public class JobListing
+    public class JobListing : IEntityBase
     {
         [Key]
         public int Id { get; set; }

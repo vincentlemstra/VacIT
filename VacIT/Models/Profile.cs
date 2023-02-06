@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using VacIT.Data.Base;
 
 namespace VacIT.Models
 {
-    public class Profile
+    public class Profile : IEntityBase
     {
         [Key]
         public int Id { get; set; }

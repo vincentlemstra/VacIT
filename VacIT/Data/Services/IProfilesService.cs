@@ -3,8 +3,8 @@ using VacIT.Models;
 
 namespace VacIT.Data.Services
 {
-    public interface IJobListingsService : IEntityBaseRepository<JobListing>
+    public interface IProfilesService : IEntityBaseRepository<Profile>
     {
-
+        
     }
 }

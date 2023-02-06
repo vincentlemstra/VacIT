@@ -7,8 +7,8 @@ builder.Services.AddDbContext<VacITContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("VacITContext") ?? throw new InvalidOperationException("Connection string 'VacITContext' not found.")));
 
 // Services configuration
-// Add JobListingSerive
 builder.Services.AddScoped<IJobListingsService, JobListingsService>();
+builder.Services.AddScoped<IProfilesService, ProfilesService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

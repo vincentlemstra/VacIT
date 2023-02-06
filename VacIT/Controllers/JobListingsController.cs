@@ -15,8 +15,7 @@ namespace VacIT.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //var data = await _context.JobListings.Include(n => n.Employer).OrderByDescending(n => n.Date).ToListAsync();
-            var data = await _service.GetAllJobListings();
+            var data = await _service.GetAllAsync();
             return View(data);
         }
 
@@ -32,7 +31,7 @@ namespace VacIT.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _service.AddJobListing(jobListing);
+                await _service.AddAsync(jobListing);
                 return RedirectToAction(nameof(Index));
             }
             return View(jobListing);
@@ -41,7 +40,7 @@ namespace VacIT.Controllers
         // GET: JobListings/Details/1
         public async Task<IActionResult> Details(int id)
         {
-            var jobListingDetails = await _service.GetJobListingById(id);
+            var jobListingDetails = await _service.GetByIdAsync(id);
             if (jobListingDetails == null)
             {
                 return View("NotFound");
@@ -52,7 +51,7 @@ namespace VacIT.Controllers
         // GET: JobListings/Edit/1
         public async Task<IActionResult> Edit(int id)
         {
-            var jobListingDetails = await _service.GetJobListingById(id);
+            var jobListingDetails = await _service.GetByIdAsync(id);
             if (jobListingDetails == null)
             {
                 return View("NotFound");
@@ -66,7 +65,7 @@ namespace VacIT.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _service.UpdateJobListing(id, jobListing);
+                await _service.UpdateAsync(id, jobListing);
                 return RedirectToAction(nameof(Index));
             }
             return View(jobListing);
@@ -75,7 +74,7 @@ namespace VacIT.Controllers
         // GET: JobListings/Delete/1
         public async Task<IActionResult> Delete(int id)
         {
-            var jobListingDetails = await _service.GetJobListingById(id);
+            var jobListingDetails = await _service.GetByIdAsync(id);
             if (jobListingDetails == null)
             {
                 return View("NotFound");
@@ -87,12 +86,12 @@ namespace VacIT.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var jobListingDetails = await _service.GetJobListingById(id);
+            var jobListingDetails = await _service.GetByIdAsync(id);
             if (jobListingDetails == null)
             {
                 return View("NotFound");
             }
-            await _service.DeleteJobListing(id);
+            await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
     }
