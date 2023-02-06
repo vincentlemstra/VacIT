@@ -1,4 +1,4 @@
-﻿@model VacIT.Models.JobListing
+﻿@model JobListing
 
 @{
     ViewData["Title"] = "Details";
@@ -19,9 +19,7 @@
             @Html.DisplayNameFor(model => model.LogoURL)
         </dt>
         <dd class = "col-sm-10">
-            <p>@Url.Content("~/wwwroot/img/job_listing/windows.png")</p>
-            <img src="@Url.Content("~/wwwroot/img/job_listing/windows.png")" />
-            
+            <img src=@Url.Content(Model.LogoURL) alt="logo img" style="max-width: 150px" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
