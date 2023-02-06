@@ -1,10 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using VacIT.Data;
+using VacIT.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<VacITContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("VacITContext") ?? throw new InvalidOperationException("Connection string 'VacITContext' not found.")));
+
+// Services configuration
+// Add JobListingSerive
+builder.Services.AddScoped<IJobListingsService, JobListingsService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -14,8 +18,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-
-    AppDbInitializer.Initialize(services);
+    VacITDbInitializer.Initialize(services);
 }
 
 // Configure the HTTP request pipeline.
@@ -35,6 +38,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=JobListings}/{action=Index}/{id?}");
 
 app.Run();

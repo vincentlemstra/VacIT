@@ -3,7 +3,7 @@ using VacIT.Models;
 
 namespace VacIT.Data
 {
-    public class AppDbInitializer
+    public class VacITDbInitializer
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
@@ -82,7 +82,6 @@ namespace VacIT.Data
                             Zipcode = "6135KR",
                             Residence = "Sittard",
                             Description = "Koninklijke DSM N.V. is een wereldwijd, ‘purpose-led’ bedrijf in Gezondheid, Voeding en Bioscience dat vanuit wetenschappelijke basis de gezondheid van mens, dier en planeet verbetert. Duurzaamheid is voor ons een verantwoordelijkheid, een kernwaarde en staat centraal in alles wat we doen. Met onze producten en innovatieve oplossingen willen we het leven van mensen verbeteren. We richten ons hierbij op een goede gezondheid en gezonde, goed smakende en duurzaam geproduceerde voeding voor iedereen. Denk hierbij aan vitamines, mineralen, eiwitten, gezonde vetzuren, enzymen en andere gezonde ingrediënten die je terugvindt in voedselproducten voor mens en dier.",
-
                         },
                         new Employer()
                         {

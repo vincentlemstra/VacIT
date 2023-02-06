@@ -6,13 +6,16 @@ namespace VacIT.Models
     {
         [Key]
         public int Id { get; set; }
+
         public string ProfilePicURL { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
+
         public int Phone { get; set; }
         public string Address { get; set; }
         public string Zipcode { get; set; }
@@ -22,6 +25,5 @@ namespace VacIT.Models
 
         // Relationships
         public List<JobListing> JobListings { get; set; }
-
     }
 }

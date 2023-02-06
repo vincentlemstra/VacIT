@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VacIT.Data;
 using VacIT.Models;
@@ -22,9 +17,10 @@ namespace VacIT.Controllers
         // GET: Profiles
         public async Task<IActionResult> Index()
         {
-              return _context.Profiles != null ? 
-                          View(await _context.Profiles.ToListAsync()) :
-                          Problem("Entity set 'VacITContext.Profile'  is null.");
+            // todo change to service
+            return _context.Profiles != null ?
+                        View(await _context.Profiles.ToListAsync()) :
+                        Problem("Entity set 'VacITContext.Profile'  is null.");
         }
 
         // GET: Profiles/Details/5
@@ -35,6 +31,7 @@ namespace VacIT.Controllers
                 return NotFound();
             }
 
+            // todo change to service
             var profile = await _context.Profiles
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (profile == null)
@@ -58,6 +55,7 @@ namespace VacIT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ProfilePicURL,FirstName,LastName,Email,Password,BirthDate,Phone,Address,Zipcode,Residence,Motivation,CVURL")] Profile profile)
         {
+            // todo change to service
             if (ModelState.IsValid)
             {
                 _context.Add(profile);
@@ -75,6 +73,7 @@ namespace VacIT.Controllers
                 return NotFound();
             }
 
+            // todo change to service
             var profile = await _context.Profiles.FindAsync(id);
             if (profile == null)
             {
@@ -95,6 +94,7 @@ namespace VacIT.Controllers
                 return NotFound();
             }
 
+            // todo change to service
             if (ModelState.IsValid)
             {
                 try
@@ -126,6 +126,7 @@ namespace VacIT.Controllers
                 return NotFound();
             }
 
+            // todo change to service
             var profile = await _context.Profiles
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (profile == null)
@@ -145,19 +146,22 @@ namespace VacIT.Controllers
             {
                 return Problem("Entity set 'VacITContext.Profile'  is null.");
             }
+
+            // todo change to service
             var profile = await _context.Profiles.FindAsync(id);
             if (profile != null)
             {
                 _context.Profiles.Remove(profile);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
+        // todo change to service
         private bool ProfileExists(int id)
         {
-          return (_context.Profiles?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Profiles?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
