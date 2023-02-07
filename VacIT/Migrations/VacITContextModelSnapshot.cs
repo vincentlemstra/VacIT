@@ -38,15 +38,14 @@ namespace VacIT.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("LoginInfoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("LogoURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -64,7 +63,38 @@ namespace VacIT.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("LoginInfoId");
+
                     b.ToTable("Employers");
+                });
+
+            modelBuilder.Entity("VacIT.Models.JobApplication", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Invite")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("InviteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("JobListingId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JobListingId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("JobApplications");
                 });
 
             modelBuilder.Entity("VacIT.Models.JobListing", b =>
@@ -98,9 +128,6 @@ namespace VacIT.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("ProfileId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Residence")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -109,9 +136,32 @@ namespace VacIT.Migrations
 
                     b.HasIndex("EmployerId");
 
-                    b.HasIndex("ProfileId");
-
                     b.ToTable("JobListings");
+                });
+
+            modelBuilder.Entity("VacIT.Models.LoginInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LoginsInfo");
                 });
 
             modelBuilder.Entity("VacIT.Models.Profile", b =>
@@ -133,10 +183,6 @@ namespace VacIT.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -145,11 +191,10 @@ namespace VacIT.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Motivation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("LoginInfoId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("Motivation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -170,7 +215,35 @@ namespace VacIT.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("LoginInfoId");
+
                     b.ToTable("Profiles");
+                });
+
+            modelBuilder.Entity("VacIT.Models.Employer", b =>
+                {
+                    b.HasOne("VacIT.Models.LoginInfo", "LoginInfo")
+                        .WithMany()
+                        .HasForeignKey("LoginInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LoginInfo");
+                });
+
+            modelBuilder.Entity("VacIT.Models.JobApplication", b =>
+                {
+                    b.HasOne("VacIT.Models.JobListing", "JobListing")
+                        .WithMany("JobApplications")
+                        .HasForeignKey("JobListingId");
+
+                    b.HasOne("VacIT.Models.Profile", "Profile")
+                        .WithMany("JobApplications")
+                        .HasForeignKey("ProfileId");
+
+                    b.Navigation("JobListing");
+
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("VacIT.Models.JobListing", b =>
@@ -181,11 +254,18 @@ namespace VacIT.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("VacIT.Models.Profile", null)
-                        .WithMany("JobListings")
-                        .HasForeignKey("ProfileId");
-
                     b.Navigation("Employer");
+                });
+
+            modelBuilder.Entity("VacIT.Models.Profile", b =>
+                {
+                    b.HasOne("VacIT.Models.LoginInfo", "LoginInfo")
+                        .WithMany()
+                        .HasForeignKey("LoginInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LoginInfo");
                 });
 
             modelBuilder.Entity("VacIT.Models.Employer", b =>
@@ -193,9 +273,14 @@ namespace VacIT.Migrations
                     b.Navigation("JobListings");
                 });
 
+            modelBuilder.Entity("VacIT.Models.JobListing", b =>
+                {
+                    b.Navigation("JobApplications");
+                });
+
             modelBuilder.Entity("VacIT.Models.Profile", b =>
                 {
-                    b.Navigation("JobListings");
+                    b.Navigation("JobApplications");
                 });
 #pragma warning restore 612, 618
         }

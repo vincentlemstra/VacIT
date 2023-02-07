@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using VacIT.Data.Base;
 
 namespace VacIT.Models
 {
     public class Employer : IEntityBase
     {
-        [Key]
         public int Id { get; set; }
 
         [Display(Name = "Logo URL")]
@@ -13,8 +13,6 @@ namespace VacIT.Models
 
         [Display(Name = "Bedrijfsnaam")]
         public string Name { get; set; }
-
-        public string Password { get; set; }
 
         [Display(Name = "Website")]
         public string WebsiteURL { get; set; }
@@ -33,5 +31,9 @@ namespace VacIT.Models
 
         // Relationships
         public List<JobListing> JobListings { get; set; }
+
+        // Login
+        public int LoginInfoId { get; set; }
+        public LoginInfo LoginInfo { get; set; }
     }
 }

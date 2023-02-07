@@ -1,18 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using VacIT.Data.Base;
 
 namespace VacIT.Models
 {
     public class Profile : IEntityBase
     {
+        // todo restricties toevoegen
+        // todo error messages toevoegen
+
         [Key]
         public int Id { get; set; }
 
         public string ProfilePicURL { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
@@ -25,6 +27,10 @@ namespace VacIT.Models
         public string CVURL { get; set; }
 
         // Relationships
-        public List<JobListing> JobListings { get; set; }
+        public List<JobApplication> JobApplications { get; set; }
+
+        // Login
+        public int LoginInfoId { get; set; }
+        public LoginInfo LoginInfo { get; set; }
     }
 }
