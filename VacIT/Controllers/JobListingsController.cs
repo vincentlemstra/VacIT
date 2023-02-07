@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
+using System.Dynamic;
 using VacIT.Data.Services;
 using VacIT.Models;
 
@@ -13,6 +15,16 @@ namespace VacIT.Controllers
         {
             this._service = service;
         }
+
+        // =================TESTS =====================
+        public async Task<IActionResult> Test()
+        {
+            var data = await _service.GetAllJobListingsByEmployerIdAsync(1);
+            return View(data);
+        }
+
+
+        // ============================================
 
         public async Task<IActionResult> Index()
         {
@@ -41,12 +53,22 @@ namespace VacIT.Controllers
         // GET: JobListings/Details/1
         public async Task<IActionResult> Details(int id)
         {
-            var jobListingDetails = await _service.GetJobListingByIdAsync(id);
-            if (jobListingDetails == null)
+            dynamic model = new ExpandoObject();
+            model.jobListingDetails = await _service.GetJobListingByIdAsync(id);
+            model.employerJobListings = await _service.GetAllJobListingsByEmployerIdAsync(model.jobListingDetails.EmployerId);
+
+            if (model == null)
             {
                 return View("NotFound");
             }
-            return View(jobListingDetails);
+            return View(model);
+
+            //var jobListingDetails = await _service.GetJobListingByIdAsync(id);
+            //if (jobListingDetails == null)
+            //{
+            //    return View("NotFound");
+            //}
+            //return View(jobListingDetails);
         }
 
         // GET: JobListings/Edit/1

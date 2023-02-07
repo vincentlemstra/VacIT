@@ -19,5 +19,10 @@ namespace VacIT.Data.Services
                 .Include(e => e.Employer)
                 .FirstOrDefaultAsync(n => n.Id == id);
         }
+
+        public async Task<IEnumerable<JobListing>> GetAllJobListingsByEmployerIdAsync(int id)
+        {
+            return await _context.JobListings.Where(n => n.EmployerId == id).ToListAsync();
+        }
     }
 }

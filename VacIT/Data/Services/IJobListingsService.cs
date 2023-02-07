@@ -6,5 +6,6 @@ namespace VacIT.Data.Services
     public interface IJobListingsService : IEntityBaseRepository<JobListing>
     {
         Task<JobListing> GetJobListingByIdAsync(int id);
+        Task<IEnumerable<JobListing>> GetAllJobListingsByEmployerIdAsync(int id);
     }
 }
