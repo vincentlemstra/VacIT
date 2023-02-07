@@ -62,13 +62,6 @@ namespace VacIT.Controllers
                 return View("NotFound");
             }
             return View(model);
-
-            //var jobListingDetails = await _service.GetJobListingByIdAsync(id);
-            //if (jobListingDetails == null)
-            //{
-            //    return View("NotFound");
-            //}
-            //return View(jobListingDetails);
         }
 
         // GET: JobListings/Edit/1

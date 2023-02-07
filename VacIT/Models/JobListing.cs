@@ -28,6 +28,7 @@ namespace VacIT.Models
         public string Level { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Datum")]
         public DateTime Date { get; set; }
 

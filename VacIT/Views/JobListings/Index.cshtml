@@ -17,7 +17,7 @@
                         <img class="rounded-cirle" src=@Url.Content(item.LogoURL) alt="@item.Name" />
                     </div>
                     <div class="job-item col-8">
-                        <h4>@Html.DisplayFor(modelItem => item.Date)</h4>
+                        <h4>@item.Date.ToString("dd/MM/yyyy")</h4>
                         <h3>@item.Name</h3>
                         <p>@item.Description.Substring(0, 225)...</p>
                     </div>
