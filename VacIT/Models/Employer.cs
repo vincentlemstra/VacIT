@@ -33,7 +33,6 @@ namespace VacIT.Models
         public List<JobListing> JobListings { get; set; }
 
         // Login
-        public int LoginInfoId { get; set; }
-        public LoginInfo LoginInfo { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

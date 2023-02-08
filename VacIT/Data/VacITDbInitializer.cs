@@ -14,55 +14,55 @@ namespace VacIT.Data
                 context.Database.EnsureCreated();
 
                 // Login_info
-                if (!context.LoginsInfo.Any())
-                {
-                    context.LoginsInfo.AddRange(new List<LoginInfo>()
-                    {
-                        new LoginInfo()
-                        {
-                            Email = "admin@mail.com",
-                            Password = "admin",
-                            Role = "admin",
-                        },
-                        new LoginInfo()
-                        {
-                            Email = "henrietteloughan@mail.com",
-                            Password = "henriette",
-                            Role = "user",
-                        },
-                        new LoginInfo()
-                        {
-                            Email = "jeremiepocke@mail.com",
-                            Password = "jeremie",
-                            Role = "user",
-                        },
-                        new LoginInfo()
-                        {
-                            Email = "ermamaccahee@mail.com",
-                            Password = "erma",
-                            Role = "user",
-                        },
-                        new LoginInfo()
-                        {
-                            Email = "dsm@mail.com",
-                            Password = "dsm",
-                            Role = "employer",
-                        },
-                        new LoginInfo()
-                        {
-                            Email = "hostnet@mail.com",
-                            Password = "hostnet",
-                            Role = "employer",
-                        },
-                        new LoginInfo()
-                        {
-                            Email = "educom@mail.com",
-                            Password = "educom",
-                            Role = "employer",
-                        },
-                    });
-                    context.SaveChanges();
-                }
+                //if (!context.LoginsInfo.Any())
+                //{
+                //    context.LoginsInfo.AddRange(new List<LoginInfo>()
+                //    {
+                //        new LoginInfo()
+                //        {
+                //            Email = "admin@mail.com",
+                //            Password = "admin",
+                //            Role = "admin",
+                //        },
+                //        new LoginInfo()
+                //        {
+                //            Email = "henrietteloughan@mail.com",
+                //            Password = "henriette",
+                //            Role = "user",
+                //        },
+                //        new LoginInfo()
+                //        {
+                //            Email = "jeremiepocke@mail.com",
+                //            Password = "jeremie",
+                //            Role = "user",
+                //        },
+                //        new LoginInfo()
+                //        {
+                //            Email = "ermamaccahee@mail.com",
+                //            Password = "erma",
+                //            Role = "user",
+                //        },
+                //        new LoginInfo()
+                //        {
+                //            Email = "dsm@mail.com",
+                //            Password = "dsm",
+                //            Role = "employer",
+                //        },
+                //        new LoginInfo()
+                //        {
+                //            Email = "hostnet@mail.com",
+                //            Password = "hostnet",
+                //            Role = "employer",
+                //        },
+                //        new LoginInfo()
+                //        {
+                //            Email = "educom@mail.com",
+                //            Password = "educom",
+                //            Role = "employer",
+                //        },
+                //    });
+                //    context.SaveChanges();
+                //}
 
                 // Profiles
                 if (!context.Profiles.Any())
@@ -81,7 +81,7 @@ namespace VacIT.Data
                             Residence = "Santa Cruz do Sul",
                             Motivation = "dolorum eligendi quam cupiditate excepturi mollitia maiores labore  suscipit quas? Nulla",
                             CVURL = "http://testCV.com/",
-                            LoginInfoId = 2,                           
+                            //LoginInfoId = 2,                           
                         },
                         new Profile()
                         {
@@ -95,7 +95,7 @@ namespace VacIT.Data
                             Residence = "Newark",
                             Motivation = "dolorum eligendi quam cupiditate excepturi mollitia maiores labore  suscipit quas? Nulla",
                             CVURL = "http://testCV.com/",
-                            LoginInfoId = 3,
+                            //LoginInfoId = 3,
                         },
                         new Profile()
                         {
@@ -109,7 +109,7 @@ namespace VacIT.Data
                             Residence = "Arras",
                             Motivation = "dolorum eligendi quam cupiditate excepturi mollitia maiores labore  suscipit quas? Nulla",
                             CVURL = "http://testCV.com/",
-                            LoginInfoId = 4,
+                            //LoginInfoId = 4,
                         }
                     });
                     context.SaveChanges();
@@ -129,7 +129,7 @@ namespace VacIT.Data
                             Zipcode = "6135KR",
                             Residence = "Sittard",
                             Description = "Koninklijke DSM N.V. is een wereldwijd, ‘purpose-led’ bedrijf in Gezondheid, Voeding en Bioscience dat vanuit wetenschappelijke basis de gezondheid van mens, dier en planeet verbetert. Duurzaamheid is voor ons een verantwoordelijkheid, een kernwaarde en staat centraal in alles wat we doen. Met onze producten en innovatieve oplossingen willen we het leven van mensen verbeteren. We richten ons hierbij op een goede gezondheid en gezonde, goed smakende en duurzaam geproduceerde voeding voor iedereen. Denk hierbij aan vitamines, mineralen, eiwitten, gezonde vetzuren, enzymen en andere gezonde ingrediënten die je terugvindt in voedselproducten voor mens en dier.",
-                            LoginInfoId = 5,
+                            //LoginInfoId = 5,
                         },
                         new Employer()
                         {
@@ -140,7 +140,7 @@ namespace VacIT.Data
                             Zipcode = "1013AA",
                             Residence = "Amsterdam",
                             Description = "Wij voorzien je van een passende online oplossing en buitengewone service. Op welk punt van jouw reis je je ook bevindt. Ondernemers helpen met hun online ambities, dat is onze missie. Want wij geloven dat elke ondernemer online succesvol kan zijn en kan blijven groeien.",
-                            LoginInfoId = 6,
+                            //LoginInfoId = 6,
                         },
                         new Employer()
                         {
@@ -151,7 +151,7 @@ namespace VacIT.Data
                             Zipcode = "6842CW",
                             Residence = "Arnhem",
                             Description = "Educom is een professionele ICT-opleider die mensen bij- of omschoolt  tot softwareontwikkelaar. Wij begeleiden werkzoekende ICT-ers, of mensen die van de ICT hun beroep willen maken, door middel van een gedegen en vooral praktijkgericht traineeship naar een baan. ",
-                            LoginInfoId = 7,
+                            //LoginInfoId = 7,
                         },
                     });
                     context.SaveChanges();
