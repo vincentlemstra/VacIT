@@ -5,7 +5,10 @@ namespace VacIT.Models
 {
     public class ApplicationUser : IdentityUser
     {
-       [Display(Name = "Full name")]
-        public string FullName { get; set; }
+       [Display(Name = "Voornaam")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Achternaam")]
+        public string LastName { get; set; }
     }
 }

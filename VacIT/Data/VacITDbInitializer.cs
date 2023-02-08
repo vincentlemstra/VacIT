@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using VacIT.Data.Static;
 using VacIT.Models;
@@ -13,6 +14,18 @@ namespace VacIT.Data
             using (var context = new VacITContext(serviceProvider.GetRequiredService<DbContextOptions<VacITContext>>()))
             {
                 context.Database.EnsureCreated();
+
+                // Roles
+                string[] roles = new string[] { UserRoles.Admin, UserRoles.User, UserRoles.Employer };
+                foreach (string role in roles)
+                {
+                    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                    if (!context.Roles.Any(r => r.Name == role))
+                    {
+                        roleManager.CreateAsync(new IdentityRole(role));
+                    }
+                }
 
                 // Profiles
                 if (!context.Profiles.Any())
@@ -188,123 +201,123 @@ namespace VacIT.Data
             }
         }
 
-        public static async Task InitializeUsersAndRolesAsync(IServiceProvider serviceProvider)
-        {
-            using (var context = new VacITContext(serviceProvider.GetRequiredService<DbContextOptions<VacITContext>>()))
-            {
-                // Create Roles
-                var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        //public static async Task InitializeUsersAndRolesAsync(IServiceProvider serviceProvider)
+        //{
+        //    using (var context = new VacITContext(serviceProvider.GetRequiredService<DbContextOptions<VacITContext>>()))
+        //    {
+        //        // Create Roles
+        //        var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin)); 
+        //        if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
+        //            await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin)); 
 
-                if (!await roleManager.RoleExistsAsync(UserRoles.User))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+        //        if (!await roleManager.RoleExistsAsync(UserRoles.User))
+        //            await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
 
-                if (!await roleManager.RoleExistsAsync(UserRoles.Employer))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Employer));
+        //        if (!await roleManager.RoleExistsAsync(UserRoles.Employer))
+        //            await roleManager.CreateAsync(new IdentityRole(UserRoles.Employer));
 
-                // Create Users
-                var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+        //        // Create Users
+        //        var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-                var adminUser = await userManager.FindByEmailAsync("admin@vacit.com");
-                if(adminUser == null)
-                {
-                    var newAdminUser = new ApplicationUser()
-                    {
-                        FullName = "Admin",
-                        UserName = "admin",
-                        Email = "admin@vacit.com",
-                        EmailConfirmed = true
-                    };
-                    await userManager.CreateAsync(newAdminUser, "admin");
-                    await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
-                }
+        //        var adminUser = await userManager.FindByEmailAsync("admin@vacit.com");
+        //        if(adminUser == null)
+        //        {
+        //            var newAdminUser = new ApplicationUser()
+        //            {
+        //                FullName = "Admin",
+        //                UserName = "admin",
+        //                Email = "admin@vacit.com",
+        //                EmailConfirmed = true
+        //            };
+        //            await userManager.CreateAsync(newAdminUser, "admin");
+        //            await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+        //        }
 
-                var userHenriette = await userManager.FindByEmailAsync("henriette@mail.com");
-                if (userHenriette == null)
-                {
-                    var newAppUser = new ApplicationUser()
-                    {
-                        FullName = "Henriette Loughan",
-                        UserName = "henrietteloughan",
-                        Email = "henriette@mail.com",
-                        EmailConfirmed = true
-                    };
-                    await userManager.CreateAsync(newAppUser, "user");
-                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
-                }
+        //        var userHenriette = await userManager.FindByEmailAsync("henriette@mail.com");
+        //        if (userHenriette == null)
+        //        {
+        //            var newAppUser = new ApplicationUser()
+        //            {
+        //                FullName = "Henriette Loughan",
+        //                UserName = "henrietteloughan",
+        //                Email = "henriette@mail.com",
+        //                EmailConfirmed = true
+        //            };
+        //            await userManager.CreateAsync(newAppUser, "user");
+        //            await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
+        //        }
 
-                var userJeremie = await userManager.FindByEmailAsync("jeremie@mail.com");
-                if (userJeremie == null)
-                {
-                    var newAppUser = new ApplicationUser()
-                    {
-                        FullName = "Jeremie Pocke",
-                        UserName = "jeremiepocke",
-                        Email = "jeremie@mail.com",
-                        EmailConfirmed = true
-                    };
-                    await userManager.CreateAsync(newAppUser, "user");
-                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
-                }
+        //        var userJeremie = await userManager.FindByEmailAsync("jeremie@mail.com");
+        //        if (userJeremie == null)
+        //        {
+        //            var newAppUser = new ApplicationUser()
+        //            {
+        //                FullName = "Jeremie Pocke",
+        //                UserName = "jeremiepocke",
+        //                Email = "jeremie@mail.com",
+        //                EmailConfirmed = true
+        //            };
+        //            await userManager.CreateAsync(newAppUser, "user");
+        //            await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
+        //        }
 
-                var userErma = await userManager.FindByEmailAsync("erma@mail.com");
-                if (userErma == null)
-                {
-                    var newAppUser = new ApplicationUser()
-                    {
-                        FullName = "Erma MacCahee",
-                        UserName = "ermamaccahee",
-                        Email = "erma@mail.com",
-                        EmailConfirmed = true
-                    };
-                    await userManager.CreateAsync(newAppUser, "user");
-                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
-                }
+        //        var userErma = await userManager.FindByEmailAsync("erma@mail.com");
+        //        if (userErma == null)
+        //        {
+        //            var newAppUser = new ApplicationUser()
+        //            {
+        //                FullName = "Erma MacCahee",
+        //                UserName = "ermamaccahee",
+        //                Email = "erma@mail.com",
+        //                EmailConfirmed = true
+        //            };
+        //            await userManager.CreateAsync(newAppUser, "user");
+        //            await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
+        //        }
 
-                var employerDSM = await userManager.FindByEmailAsync("dsm@mail.com");
-                if (employerDSM == null)
-                {
-                    var newAppEmployer = new ApplicationUser()
-                    {
-                        FullName = "DSM",
-                        UserName = "dsm",
-                        Email = "dsm@mail.com",
-                        EmailConfirmed = true
-                    };
-                    await userManager.CreateAsync(newAppEmployer, "employer");
-                    await userManager.AddToRoleAsync(newAppEmployer, UserRoles.Employer);
-                }
+        //        var employerDSM = await userManager.FindByEmailAsync("dsm@mail.com");
+        //        if (employerDSM == null)
+        //        {
+        //            var newAppEmployer = new ApplicationUser()
+        //            {
+        //                FullName = "DSM",
+        //                UserName = "dsm",
+        //                Email = "dsm@mail.com",
+        //                EmailConfirmed = true
+        //            };
+        //            await userManager.CreateAsync(newAppEmployer, "employer");
+        //            await userManager.AddToRoleAsync(newAppEmployer, UserRoles.Employer);
+        //        }
 
-                var employerHostnet = await userManager.FindByEmailAsync("hostnet@mail.com");
-                if (employerHostnet == null)
-                {
-                    var newAppEmployer = new ApplicationUser()
-                    {
-                        FullName = "Hostnet",
-                        UserName = "hostnet",
-                        Email = "hostnet@mail.com",
-                        EmailConfirmed = true
-                    };
-                    await userManager.CreateAsync(newAppEmployer, "employer");
-                    await userManager.AddToRoleAsync(newAppEmployer, UserRoles.Employer);
-                }
+        //        var employerHostnet = await userManager.FindByEmailAsync("hostnet@mail.com");
+        //        if (employerHostnet == null)
+        //        {
+        //            var newAppEmployer = new ApplicationUser()
+        //            {
+        //                FullName = "Hostnet",
+        //                UserName = "hostnet",
+        //                Email = "hostnet@mail.com",
+        //                EmailConfirmed = true
+        //            };
+        //            await userManager.CreateAsync(newAppEmployer, "employer");
+        //            await userManager.AddToRoleAsync(newAppEmployer, UserRoles.Employer);
+        //        }
 
-                var employerEducom = await userManager.FindByEmailAsync("educom@mail.com");
-                if (employerEducom == null)
-                {
-                    var newAppEmployer = new ApplicationUser()
-                    {
-                        FullName = "Educom",
-                        UserName = "educom",
-                        Email = "educom@mail.com",
-                        EmailConfirmed = true
-                    };
-                    await userManager.CreateAsync(newAppEmployer, "employer");
-                    await userManager.AddToRoleAsync(newAppEmployer, UserRoles.Employer);
-                }
-            }
-        }
+        //        var employerEducom = await userManager.FindByEmailAsync("educom@mail.com");
+        //        if (employerEducom == null)
+        //        {
+        //            var newAppEmployer = new ApplicationUser()
+        //            {
+        //                FullName = "Educom",
+        //                UserName = "educom",
+        //                Email = "educom@mail.com",
+        //                EmailConfirmed = true
+        //            };
+        //            await userManager.CreateAsync(newAppEmployer, "employer");
+        //            await userManager.AddToRoleAsync(newAppEmployer, UserRoles.Employer);
+        //        }
+        //    }
+        //}
     }
 }

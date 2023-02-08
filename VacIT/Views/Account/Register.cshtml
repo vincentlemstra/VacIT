@@ -1,8 +1,8 @@
 ﻿@using VacIT.Data.ViewModels
-@model LoginVM;
+@model RegisterVM;
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Register";
 }
 
 @*todo <br /> wegwerken in form *@
@@ -19,10 +19,22 @@
 
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form asp-action="Login" method="post">
+                <form asp-action="Register" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="form-group">
+                        <input asp-for="FirstName" class="form-control" placeholder="Voornaam" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <br />
+                        <input asp-for="LastName" class="form-control" placeholder="Achternaam" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <br />
                         <input asp-for="Email" class="form-control" placeholder="Email"/>
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
@@ -35,8 +47,14 @@
 
                     <div class="form-group">
                         <br />
+                        <input asp-for="ConfirmPassword" class="form-control" placeholder="Herhaal wachtwoord" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <br />
                         <a class="btn btn-secondary" asp-controller="JobListings" asp-action="Index">Ga terug</a>
-                        <input class="btn btn-success" type="submit" value="Login"/>
+                        <input class="btn btn-success" type="submit" value="Register"/>
                     </div>
                 </form>
             </div>

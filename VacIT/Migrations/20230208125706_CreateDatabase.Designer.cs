@@ -12,7 +12,7 @@ using VacIT.Data;
 namespace VacIT.Migrations
 {
     [DbContext(typeof(VacITContext))]
-    [Migration("20230208082529_CreateDatabase")]
+    [Migration("20230208125706_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -177,7 +177,11 @@ namespace VacIT.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
