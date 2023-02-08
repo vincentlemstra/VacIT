@@ -32,7 +32,7 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     VacITDbInitializer.Initialize(services);
-    VacITDbInitializer.InitializeUsersAndRolesAsync(services).Wait();
+    //VacITDbInitializer.InitializeUsersAndRolesAsync(services).Wait();
 }
 
 // Configure the HTTP request pipeline.

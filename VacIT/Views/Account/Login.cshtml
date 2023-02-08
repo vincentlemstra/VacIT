@@ -1,0 +1,37 @@
+﻿@using VacIT.Data.ViewModels
+@model LoginVM;
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+@*todo <br /> wegwerken in form *@
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Login" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <input asp-for="Email" class="form-control" placeholder="Email"/>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <br />
+                        <input asp-for="Password" class="form-control" placeholder="Wachtwoord"/>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <br />
+                        <a class="btn btn-secondary" asp-controller="JobListings" asp-action="Index">Ga terug</a>
+                        <input class="btn btn-success" type="submit" value="Login"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
