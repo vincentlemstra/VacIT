@@ -16,10 +16,7 @@
                 @Html.DisplayNameFor(model => model.ProfilePicURL)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Html.DisplayNameFor(model => model.FullName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.BirthDate)
@@ -50,13 +47,10 @@
         {
             <tr>
                 <td class="align-middle">
-                    <img class="rounded-cirle" src="@item.ProfilePicURL" alt="@item.LastName" style="max-width: 150px" />
+                    <img class="rounded-cirle" src="@item.ProfilePicURL" alt="@item.FullName" style="max-width: 150px" />
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
+                    @Html.DisplayFor(modelItem => item.FullName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.BirthDate)

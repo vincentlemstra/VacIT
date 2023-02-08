@@ -35,8 +35,7 @@ namespace VacIT.Data
                         new Profile()
                         {
                             ProfilePicURL = "img/profile/profile.png",
-                            FirstName = "Henriette",
-                            LastName = "Loughan",
+                            FullName = "Henriette Loughan",
                             BirthDate = new DateTime(1986, 12, 25),
                             Phone = 876200208,
                             Address = "82 Shoshone Pass",
@@ -49,8 +48,7 @@ namespace VacIT.Data
                         new Profile()
                         {
                             ProfilePicURL = "img/profile/profile.png",
-                            FirstName = "Jeremie",
-                            LastName = "Pocke",
+                            FullName = "Jeremie Pocke",
                             BirthDate = new DateTime(1990, 10, 12),
                             Phone = 302334911,
                             Address = "3 Bartillon Plaza",
@@ -63,8 +61,7 @@ namespace VacIT.Data
                         new Profile()
                         {
                             ProfilePicURL = "img/profile/profile.png",
-                            FirstName = "Erma",
-                            LastName = "MacCahee",
+                            FullName = "Erma MacCahee",
                             BirthDate = new DateTime(1995, 1, 8),
                             Phone = 617531381,
                             Address = "49046 Blackbird Trail",
@@ -319,5 +316,65 @@ namespace VacIT.Data
         //        }
         //    }
         //}
+    }
+
+    public class SampleData
+    {
+        public static void Initialize(IServiceProvider serviceProvider)
+        {
+            var context = serviceProvider.GetService<VacITContext>();
+
+            string[] roles = new string[] { UserRoles.Admin, UserRoles.User, UserRoles.Employer };
+
+            foreach (string role in roles)
+            {
+                var roleStore = new RoleStore<IdentityRole>(context);
+
+                if (!context.Roles.Any(r => r.Name == role))
+                {
+                    roleStore.CreateAsync(new IdentityRole(role));
+                }
+            }
+
+
+            var user = new ApplicationUser
+            {
+                FullName = "Educom",
+                Email = "xxxx@example.com",
+                NormalizedEmail = "XXXX@EXAMPLE.COM",
+                UserName = "Owner",
+                NormalizedUserName = "OWNER",
+                PhoneNumber = "+111111111111",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString("D")
+            };
+
+
+            if (!context.Users.Any(u => u.UserName == user.UserName))
+            {
+                var password = new PasswordHasher<ApplicationUser>();
+                var hashed = password.HashPassword(user, "secret");
+                user.PasswordHash = hashed;
+
+                var userStore = new UserStore<ApplicationUser>(context);
+                var result = userStore.CreateAsync(user);
+
+            }
+
+            AssignRoles(serviceProvider, user.Email, roles);
+
+            context.SaveChangesAsync();
+        }
+
+        public static async Task<IdentityResult> AssignRoles(IServiceProvider services, string email, string[] roles)
+        {
+            UserManager<ApplicationUser> _userManager = services.GetService<UserManager<ApplicationUser>>();
+            ApplicationUser user = await _userManager.FindByEmailAsync(email);
+            var result = await _userManager.AddToRolesAsync(user, roles);
+
+            return result;
+        }
+
     }
 }

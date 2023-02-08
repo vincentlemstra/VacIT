@@ -74,8 +74,7 @@ namespace VacIT.Controllers
                 }
                 var newUser = new ApplicationUser()
                 {
-                    FirstName = registerVM.FirstName,
-                    LastName = registerVM.LastName,
+                    FullName = registerVM.FullName,
                     Email = registerVM.Email,
                     UserName = registerVM.Email
                 };

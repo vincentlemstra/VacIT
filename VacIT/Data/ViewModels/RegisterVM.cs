@@ -4,13 +4,9 @@ namespace VacIT.Data.ViewModels
 {
     public class RegisterVM
     {
-        [Display(Name = "Voornaam")]
-        [Required(ErrorMessage = "Voornaam is verplicht")]
-        public string FirstName { get; set; }
-
-        [Display(Name = "Achternaam")]
-        [Required(ErrorMessage = "Achternaam is verplicht")]
-        public string LastName { get; set; }
+        [Display(Name = "Volledige Naam")]
+        [Required(ErrorMessage = "Volledige naam is verplicht")]
+        public string FullName { get; set; }
 
         [Display(Name = "Email Adres")]
         [Required(ErrorMessage = "Email Adres is verplicht")]
