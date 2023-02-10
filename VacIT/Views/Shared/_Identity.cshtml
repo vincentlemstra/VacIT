@@ -1,7 +1,5 @@
-﻿@*@inject UserManager<ApplicationUser> UserManager;
-
-@if (!User.Identity.IsAuthenticated)
-{*@
+﻿@if (!User.Identity.IsAuthenticated)
+{
     <li class="nav-item">
         <a class="nav-link text-dark" asp-controller="Account" asp-action="Create">Registreren</a>
     </li>
@@ -10,9 +8,9 @@
     <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Inloggen</a>
 
     </li>
-@*}
+}
 else
-{*@
+{
     <li class="nav-item">
         <a class="nav-link text-dark" asp-controller="Profiles" asp-action="Details" asp-route-id="">Mijn profiel</a>
     </li>
@@ -26,4 +24,4 @@ else
             <button class="btn btn-danger my-2 my-sm-0">Logout</button>
         </form>
     </li>
-@*}*@
+}

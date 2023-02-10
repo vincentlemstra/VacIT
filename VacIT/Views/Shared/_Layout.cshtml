@@ -25,18 +25,21 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1 justify-content-end">
                         @*Admin*@
-                        <li class="nav-item dropdown">
-                            <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Admin
-                            </a>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        { 
+                            <li class="nav-item dropdown">
+                                <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin
+                                </a>
 
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-controller="Profiles" asp-action="Index">Profielen</a>
-                                <a class="dropdown-item" asp-controller="Employers" asp-action="Index">Werkgevers</a>
-                                <a class="dropdown-item" asp-controller="JobListings" asp-action="Index">Vacatures</a>
-                            </div>
-                        </li>
-
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="Profiles" asp-action="Index">Profielen</a>
+                                    <a class="dropdown-item" asp-controller="Employers" asp-action="Index">Werkgevers</a>
+                                    <a class="dropdown-item" asp-controller="JobListings" asp-action="Index">Vacatures</a>
+                                </div>
+                            </li>
+                        }
+                        
                         @*Register, Login, Profile, Applications, Logout*@
                         <partial name="_Identity.cshtml" />
 

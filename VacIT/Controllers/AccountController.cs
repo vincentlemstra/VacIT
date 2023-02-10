@@ -37,8 +37,9 @@ namespace VacIT.Controllers
                     {
                         new Claim(ClaimTypes.NameIdentifier, Convert.ToString(user.Id)),
                         new Claim(ClaimTypes.Name, user.Email),
-                        new Claim(ClaimTypes.Role, "Regular"),
-                        // todo: get user.Role uit database - new Claim(ClaimTypes.Role, Convert.ToString(user.Role)),
+                        new Claim(ClaimTypes.Role, Convert.ToString(user.Role)),
+                        // new Claim(ClaimTypes.Role, "Regular"),
+                        //todo: get user.Role uit database - new Claim(ClaimTypes.Role, Convert.ToString(user.Role)),
                     };
 
                     // Initialize a new instance of the ClaimsIdentity with the claims and authentication scheme
@@ -71,9 +72,8 @@ namespace VacIT.Controllers
 
                     // SignInAsync is a Extension method for Sign in a principal for the specified scheme.
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity),authProperties);
+                    return LocalRedirect("/");
 
-                    //return LocalRedirect(loginInfo.ReturnUrl);
-                    return View("LoginSuccess");
                 }
                 else
                 {
