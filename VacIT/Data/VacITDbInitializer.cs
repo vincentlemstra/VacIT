@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using VacIT.Data.Static;
 using VacIT.Models;
 
 namespace VacIT.Data
@@ -15,18 +14,6 @@ namespace VacIT.Data
             {
                 context.Database.EnsureCreated();
 
-                // Roles
-                string[] roles = new string[] { UserRoles.Admin, UserRoles.User, UserRoles.Employer };
-                foreach (string role in roles)
-                {
-                    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-                    if (!context.Roles.Any(r => r.Name == role))
-                    {
-                        roleManager.CreateAsync(new IdentityRole(role));
-                    }
-                }
-
                 // Profiles
                 if (!context.Profiles.Any())
                 {
@@ -34,42 +21,45 @@ namespace VacIT.Data
                     {
                         new Profile()
                         {
-                            ProfilePicURL = "img/profile/profile.png",
-                            FullName = "Henriette Loughan",
+                            ProfilePicURL = "img/profile/henriette.jpg",
+                            FirstName = "Henriette",
+                            LastName = "Loughan",
+                            ApplicationUser = new ApplicationUser() { Email = "henriette@loughan.com", Password = "password"},
                             BirthDate = new DateTime(1986, 12, 25),
                             Phone = 876200208,
                             Address = "82 Shoshone Pass",
                             Zipcode = "3618ER",
                             Residence = "Santa Cruz do Sul",
                             Motivation = "dolorum eligendi quam cupiditate excepturi mollitia maiores labore  suscipit quas? Nulla",
-                            CVURL = "http://testCV.com/",
-                            //LoginInfoId = 2,                           
+                            CVURL = "http://testCV.com/"
                         },
                         new Profile()
                         {
-                            ProfilePicURL = "img/profile/profile.png",
-                            FullName = "Jeremie Pocke",
-                            BirthDate = new DateTime(1990, 10, 12),
+                            ProfilePicURL = "img/profile/jeremie.jpg",
+                            FirstName = "Jeremie",
+                            LastName = "Pocke",
+                            ApplicationUser = new ApplicationUser() { Email = "jeremie@pocke.com", Password = "password" },
+                            BirthDate = new DateTime(1986, 12, 25),
                             Phone = 302334911,
                             Address = "3 Bartillon Plaza",
                             Zipcode = "6201FP",
                             Residence = "Newark",
                             Motivation = "dolorum eligendi quam cupiditate excepturi mollitia maiores labore  suscipit quas? Nulla",
-                            CVURL = "http://testCV.com/",
-                            //LoginInfoId = 3,
+                            CVURL = "http://testCV.com/"
                         },
                         new Profile()
                         {
-                            ProfilePicURL = "img/profile/profile.png",
-                            FullName = "Erma MacCahee",
-                            BirthDate = new DateTime(1995, 1, 8),
+                            ProfilePicURL = "img/profile/erma.jpg",
+                            FirstName = "Erma",
+                            LastName = "MacCahee",
+                            ApplicationUser = new ApplicationUser() { Email = "erma@maccahee.com", Password = "password" },
+                            BirthDate = new DateTime(1986, 12, 25),
                             Phone = 617531381,
                             Address = "49046 Blackbird Trail",
                             Zipcode = "3716DP",
                             Residence = "Arras",
                             Motivation = "dolorum eligendi quam cupiditate excepturi mollitia maiores labore  suscipit quas? Nulla",
-                            CVURL = "http://testCV.com/",
-                            //LoginInfoId = 4,
+                            CVURL = "http://testCV.com/"
                         }
                     });
                     context.SaveChanges();
@@ -84,34 +74,34 @@ namespace VacIT.Data
                         {
                             LogoURL = "img/employer/dsm.svg",
                             Name = "DSM",
+                            ApplicationUser = new ApplicationUser() { Email = "info@dsm.com",  Password = "password" },
                             WebsiteURL = "https://www.dsm.com/nederland/nl_NL/home.html",
                             Address = "Poststraat 1",
                             Zipcode = "6135KR",
                             Residence = "Sittard",
                             Description = "Koninklijke DSM N.V. is een wereldwijd, ‘purpose-led’ bedrijf in Gezondheid, Voeding en Bioscience dat vanuit wetenschappelijke basis de gezondheid van mens, dier en planeet verbetert. Duurzaamheid is voor ons een verantwoordelijkheid, een kernwaarde en staat centraal in alles wat we doen. Met onze producten en innovatieve oplossingen willen we het leven van mensen verbeteren. We richten ons hierbij op een goede gezondheid en gezonde, goed smakende en duurzaam geproduceerde voeding voor iedereen. Denk hierbij aan vitamines, mineralen, eiwitten, gezonde vetzuren, enzymen en andere gezonde ingrediënten die je terugvindt in voedselproducten voor mens en dier.",
-                            //LoginInfoId = 5,
                         },
                         new Employer()
                         {
                             LogoURL = "img/employer/hostnet.png",
                             Name = "Hostnet BV",
+                            ApplicationUser = new ApplicationUser { Email = "info@hostnet.nl", Password = "password" },
                             WebsiteURL = "https://www.hostnet.nl/",
                             Address = "De Ruijterkade 6",
                             Zipcode = "1013AA",
                             Residence = "Amsterdam",
-                            Description = "Wij voorzien je van een passende online oplossing en buitengewone service. Op welk punt van jouw reis je je ook bevindt. Ondernemers helpen met hun online ambities, dat is onze missie. Want wij geloven dat elke ondernemer online succesvol kan zijn en kan blijven groeien.",
-                            //LoginInfoId = 6,
+                            Description = "Wij voorzien je van een passende online oplossing en buitengewone service. Op welk punt van jouw reis je je ook bevindt. Ondernemers helpen met hun online ambities, dat is onze missie. Want wij geloven dat elke ondernemer online succesvol kan zijn en kan blijven groeien."
                         },
                         new Employer()
                         {
                             LogoURL = "img/employer/educom.png",
                             Name = "Educom",
+                            ApplicationUser = new ApplicationUser() { Email = "info@edu-deta.com", Password = "password" },
                             WebsiteURL = "https://edu-deta.com/",
                             Address = "D.U. Stikkerstraat 10",
                             Zipcode = "6842CW",
                             Residence = "Arnhem",
-                            Description = "Educom is een professionele ICT-opleider die mensen bij- of omschoolt  tot softwareontwikkelaar. Wij begeleiden werkzoekende ICT-ers, of mensen die van de ICT hun beroep willen maken, door middel van een gedegen en vooral praktijkgericht traineeship naar een baan. ",
-                            //LoginInfoId = 7,
+                            Description = "Educom is een professionele ICT-opleider die mensen bij- of omschoolt  tot softwareontwikkelaar. Wij begeleiden werkzoekende ICT-ers, of mensen die van de ICT hun beroep willen maken, door middel van een gedegen en vooral praktijkgericht traineeship naar een baan. "
                         },
                     });
                     context.SaveChanges();
@@ -125,7 +115,7 @@ namespace VacIT.Data
                         new JobListing()
                         {
                             LogoURL = "img/job_listing/windows.png",
-                            EmployerId = 1,
+                            Employer = context.Employers.Single(e => e.Name == "DSM"),
                             Name = "Applicatie Beheerder voor DSM Sittard",
                             Level = "Medior",
                             Date = new DateTime(2023, 1, 17),
@@ -135,7 +125,7 @@ namespace VacIT.Data
                         new JobListing()
                         {
                             LogoURL = "img/job_listing/linux.png",
-                            EmployerId = 2,
+                            Employer = context.Employers.Single(e => e.Name == "Hostnet BV"),
                             Name = "Linux Systeembeheerder voor Hostnet BV",
                             Level = "Junior",
                             Date = new DateTime(2022, 12, 25),
@@ -145,8 +135,8 @@ namespace VacIT.Data
                         new JobListing()
                         {
                             LogoURL = "img/job_listing/php.png",
-                            EmployerId = 3,
-                            Name = "PHP Developer voor Educom Arnhem",
+                            Employer = context.Employers.Single(e => e.Name == "Educom"),
+                            Name = "PHP Developer",
                             Level = "Medior",
                             Date = new DateTime(2023, 1, 28),
                             Residence = "Arnhem",
@@ -155,7 +145,7 @@ namespace VacIT.Data
                         new JobListing()
                         {
                             LogoURL = "img/job_listing/python.png",
-                            EmployerId = 3,
+                            Employer = context.Employers.Single(e => e.Name == "Educom"),
                             Name = "Python Developer voor Educom Arnhem",
                             Level = "Junior",
                             Date = new DateTime(2023, 2, 4),
@@ -165,7 +155,7 @@ namespace VacIT.Data
                         new JobListing()
                         {
                             LogoURL = "img/job_listing/csharp.png",
-                            EmployerId = 3,
+                            Employer = context.Employers.Single(e => e.Name == "Educom"),
                             Name = "C# Developer voor Educom Arnhem",
                             Level = "Junior",
                             Date = new DateTime(2023, 2, 5),
@@ -175,7 +165,7 @@ namespace VacIT.Data
                         new JobListing()
                         {
                             LogoURL = "img/job_listing/java-script.png",
-                            EmployerId = 1,
+                            Employer = context.Employers.Single(e => e.Name == "DSM"),
                             Name = "JavaScript Developer voor DSM Sittard",
                             Level = "Junior",
                             Date = new DateTime(2022, 12, 18),
@@ -185,7 +175,7 @@ namespace VacIT.Data
                         new JobListing()
                         {
                             LogoURL = "img/job_listing/csharp.png",
-                            EmployerId = 2,
+                            Employer = context.Employers.Single(e => e.Name == "Hostnet BV"),
                             Name = "C# Developer voor Hostnet BV",
                             Level = "Junior",
                             Date = new DateTime(2023, 2, 7),
@@ -317,64 +307,5 @@ namespace VacIT.Data
         //    }
         //}
     }
-
-    public class SampleData
-    {
-        public static void Initialize(IServiceProvider serviceProvider)
-        {
-            var context = serviceProvider.GetService<VacITContext>();
-
-            string[] roles = new string[] { UserRoles.Admin, UserRoles.User, UserRoles.Employer };
-
-            foreach (string role in roles)
-            {
-                var roleStore = new RoleStore<IdentityRole>(context);
-
-                if (!context.Roles.Any(r => r.Name == role))
-                {
-                    roleStore.CreateAsync(new IdentityRole(role));
-                }
-            }
-
-
-            var user = new ApplicationUser
-            {
-                FullName = "Educom",
-                Email = "xxxx@example.com",
-                NormalizedEmail = "XXXX@EXAMPLE.COM",
-                UserName = "Owner",
-                NormalizedUserName = "OWNER",
-                PhoneNumber = "+111111111111",
-                EmailConfirmed = true,
-                PhoneNumberConfirmed = true,
-                SecurityStamp = Guid.NewGuid().ToString("D")
-            };
-
-
-            if (!context.Users.Any(u => u.UserName == user.UserName))
-            {
-                var password = new PasswordHasher<ApplicationUser>();
-                var hashed = password.HashPassword(user, "secret");
-                user.PasswordHash = hashed;
-
-                var userStore = new UserStore<ApplicationUser>(context);
-                var result = userStore.CreateAsync(user);
-
-            }
-
-            AssignRoles(serviceProvider, user.Email, roles);
-
-            context.SaveChangesAsync();
-        }
-
-        public static async Task<IdentityResult> AssignRoles(IServiceProvider services, string email, string[] roles)
-        {
-            UserManager<ApplicationUser> _userManager = services.GetService<UserManager<ApplicationUser>>();
-            ApplicationUser user = await _userManager.FindByEmailAsync(email);
-            var result = await _userManager.AddToRolesAsync(user, roles);
-
-            return result;
-        }
-
-    }
 }
+

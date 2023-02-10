@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using VacIT.Data;
-using VacIT.Data.Static;
 using VacIT.Data.ViewModels;
 using VacIT.Models;
 
@@ -74,21 +73,53 @@ namespace VacIT.Controllers
                 }
                 var newUser = new ApplicationUser()
                 {
-                    FullName = registerVM.FullName,
+                    //FullName = registerVM.FullName,
                     Email = registerVM.Email,
-                    UserName = registerVM.Email
+                    //UserName = registerVM.Email
                 };
+
+                var newProfile = new Profile()
+                {
+                    //FullName = registerVM.FullName,
+                    ApplicationUser = newUser
+                };
+
                 var newUserResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
 
                 if (newUserResponse.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(newUser, "user");
+                    this.CreateProfile(newProfile);
                     return View("RegisterSuccess");
                 }
+                TempData["Error"] =
+                    "Wachtwoord moet minimaal 6 karakters bevatten waarvan: 1 hoofdletter, 1 nummer en 1 speciaal karakter";
                 return View(registerVM);
 
             }
             return View(registerVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "JobListings");
+        }
+
+        [ValidateAntiForgeryToken]
+        private async void CreateProfile([Bind("FullName,ApplicationUser")] Profile profile)
+        {
+            await _context.AddAsync(profile);
+            var success = await _context.SaveChangesAsync() > 0;
+            if (success)
+            {
+                Console.WriteLine("Succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed");
+            }
         }
     }
 }

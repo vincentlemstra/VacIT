@@ -51,3 +51,7 @@ button.accept-policy {
     white-space: nowrap;
     line-height: 60px;
 }
+
+.footer img {
+    max-width: 200px;
+}

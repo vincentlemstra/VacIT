@@ -4,7 +4,7 @@ using VacIT.Data.Base;
 
 namespace VacIT.Models
 {
-    public class Profile : IEntityBase
+    public class Profile : IApplicationUserEntityBase
     {
         // todo restricties toevoegen
         // todo error messages toevoegen
@@ -13,7 +13,8 @@ namespace VacIT.Models
         public int Id { get; set; }
 
         public string ProfilePicURL { get; set; }
-        public string FullName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }

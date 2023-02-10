@@ -13,10 +13,20 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Password)
+            </th>
+
+            <th>
                 @Html.DisplayNameFor(model => model.ProfilePicURL)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FullName)
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.BirthDate)
@@ -46,12 +56,21 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td class="align-middle">
-                    <img class="rounded-cirle" src="@item.ProfilePicURL" alt="@item.FullName" style="max-width: 150px" />
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.Password)
                 </td>
+                <td class="align-middle">
+                    <img class="rounded-cirle" src="@item.ProfilePicURL" alt="@item.FirstName @item.LastName" style="max-width: 150px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
                 <td>
                     @Html.DisplayFor(modelItem => item.BirthDate)
                 </td>

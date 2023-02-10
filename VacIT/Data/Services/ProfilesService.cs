@@ -3,7 +3,7 @@ using VacIT.Models;
 
 namespace VacIT.Data.Services
 {
-    public class ProfilesService : EntityBaseRepository<Profile>, IProfilesService
+    public class ProfilesService : ApplicationUserEntityBaseRepository<Profile>, IProfilesService
     {
         public ProfilesService(VacITContext context) : base(context)
         {

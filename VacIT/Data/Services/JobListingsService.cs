@@ -7,17 +7,15 @@ namespace VacIT.Data.Services
 {
     public class JobListingsService : EntityBaseRepository<JobListing>, IJobListingsService
     {
-        private readonly VacITContext _context;
         public JobListingsService(VacITContext context) : base(context)
         {
-            _context = context;
         }
 
         public async Task<JobListing> GetJobListingByIdAsync(int id)
         {
             return await _context.JobListings
                 .Include(e => e.Employer)
-                .FirstOrDefaultAsync(n => n.Id == id);
+                .FirstAsync(n => n.Id == id);
         }
 
         public async Task<IEnumerable<JobListing>> GetAllJobListingsByEmployerIdAsync(int id)

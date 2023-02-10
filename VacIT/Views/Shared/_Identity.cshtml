@@ -1,0 +1,29 @@
+﻿@inject UserManager<ApplicationUser> UserManager;
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Registreren</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Inloggen</a>
+
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Profiles" asp-action="Details" asp-route-id="@UserManager.GetUserId(User)">Mijn profiel</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Profiles" asp-action="Details" asp-route-id="">Mijn sollicitaties</a>
+    </li>
+
+    <li class="nav-item">
+        <form asp-controller="Account" asp-action="Logout">
+            <button class="btn btn-danger my-2 my-sm-0">Logout</button>
+        </form>
+    </li>
+}

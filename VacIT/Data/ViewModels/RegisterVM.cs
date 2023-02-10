@@ -10,6 +10,7 @@ namespace VacIT.Data.ViewModels
 
         [Display(Name = "Email Adres")]
         [Required(ErrorMessage = "Email Adres is verplicht")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Display(Name = "Wachtwoord")]
