@@ -13,8 +13,33 @@ namespace VacIT.Data
             {
                 context.Database.EnsureCreated();
 
-                // Profiles
-                if (!context.Profiles.Any())
+                if (!context.LoginInfo.Any())
+                {
+                    context.LoginInfo.AddRange(new List<LoginInfo>()
+                    {
+                        new LoginInfo()
+                        {
+                            Email = "admin@vacit.com",
+                            Password = "admin",
+                            Role = Role.Admin
+                        },
+                        new LoginInfo()
+                        {
+                            Email = "user@vacit.com",
+                            Password = "user",
+                            Role = Role.User
+                        },
+                        new LoginInfo()
+                        {
+                            Email = "employer@vacit.com",
+                            Password = "employer",
+                            Role = Role.Employer
+                        },
+                    });
+                }
+
+                    // Profiles
+                    if (!context.Profiles.Any())
                 {
                     context.Profiles.AddRange(new List<Profile>()
                     {
@@ -23,7 +48,7 @@ namespace VacIT.Data
                             ProfilePicURL = "img/profile/profile.png",
                             FirstName = "Henriette",
                             LastName = "Loughan",
-                            LoginInfo = new LoginInfo() { Email = "henriette@loughan.com", Password = "password"},
+                            LoginInfo = new LoginInfo() { Email = "henriette@loughan.com", Password = "password", Role = Role.User},
                             BirthDate = new DateTime(1986, 12, 25),
                             Phone = 876200208,
                             Address = "82 Shoshone Pass",
@@ -37,7 +62,7 @@ namespace VacIT.Data
                             ProfilePicURL = "img/profile/profile.png",
                             FirstName = "Jeremie",
                             LastName = "Pocke",
-                            LoginInfo = new LoginInfo() { Email = "jeremie@pocke.com", Password = "password" },
+                            LoginInfo = new LoginInfo() { Email = "jeremie@pocke.com", Password = "password", Role = Role.User },
                             BirthDate = new DateTime(1986, 12, 25),
                             Phone = 302334911,
                             Address = "3 Bartillon Plaza",
@@ -51,7 +76,7 @@ namespace VacIT.Data
                             ProfilePicURL = "img/profile/profile.png",
                             FirstName = "Erma",
                             LastName = "MacCahee",
-                            LoginInfo = new LoginInfo() { Email = "erma@maccahee.com", Password = "password" },
+                            LoginInfo = new LoginInfo() { Email = "erma@maccahee.com", Password = "password", Role = Role.User },
                             BirthDate = new DateTime(1986, 12, 25),
                             Phone = 617531381,
                             Address = "49046 Blackbird Trail",
@@ -73,7 +98,7 @@ namespace VacIT.Data
                         {
                             LogoURL = "img/employer/dsm.svg",
                             Name = "DSM",
-                            LoginInfo = new LoginInfo() { Email = "info@dsm.com",  Password = "password" },
+                            LoginInfo = new LoginInfo() { Email = "info@dsm.com",  Password = "password", Role = Role.Employer },
                             WebsiteURL = "https://www.dsm.com/nederland/nl_NL/home.html",
                             Address = "Poststraat 1",
                             Zipcode = "6135KR",
@@ -84,7 +109,7 @@ namespace VacIT.Data
                         {
                             LogoURL = "img/employer/hostnet.png",
                             Name = "Hostnet BV",
-                            LoginInfo = new LoginInfo() { Email = "info@hostnet.nl", Password = "password" },
+                            LoginInfo = new LoginInfo() { Email = "info@hostnet.nl", Password = "password", Role = Role.Employer },
                             WebsiteURL = "https://www.hostnet.nl/",
                             Address = "De Ruijterkade 6",
                             Zipcode = "1013AA",
@@ -95,7 +120,7 @@ namespace VacIT.Data
                         {
                             LogoURL = "img/employer/educom.png",
                             Name = "Educom",
-                            LoginInfo = new LoginInfo() { Email = "info@edu-deta.com", Password = "password" },
+                            LoginInfo = new LoginInfo() { Email = "info@edu-deta.com", Password = "password", Role = Role.Employer },
                             WebsiteURL = "https://edu-deta.com/",
                             Address = "D.U. Stikkerstraat 10",
                             Zipcode = "6842CW",

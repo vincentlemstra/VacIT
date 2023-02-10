@@ -38,8 +38,6 @@ namespace VacIT.Controllers
                         new Claim(ClaimTypes.NameIdentifier, Convert.ToString(user.Id)),
                         new Claim(ClaimTypes.Name, user.Email),
                         new Claim(ClaimTypes.Role, Convert.ToString(user.Role)),
-                        // new Claim(ClaimTypes.Role, "Regular"),
-                        //todo: get user.Role uit database - new Claim(ClaimTypes.Role, Convert.ToString(user.Role)),
                     };
 
                     // Initialize a new instance of the ClaimsIdentity with the claims and authentication scheme

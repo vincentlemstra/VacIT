@@ -5,7 +5,7 @@ namespace VacIT.Models
 {
     public enum Role
     {
-        Regular = 1,
+        User = 1,
         Employer,
         Admin
     }
