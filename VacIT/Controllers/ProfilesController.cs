@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
+using System.Dynamic;
 using VacIT.Data.Services;
 using VacIT.Models;
 
@@ -16,14 +19,14 @@ namespace VacIT.Controllers
         // GET: Profiles
         public async Task<IActionResult> Index()
         {
-            var data = await _service.GetAllAsync();
+            var data = await _service.GetAllProfilesAsync();
             return View(data);
         }
 
         // GET: Profiles/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var profileDetails = await _service.GetByIdAsync(id);
+            var profileDetails = await _service.GetProfileByIdAsync(id);
             if (profileDetails == null)
             {
                 return View("NotFound");

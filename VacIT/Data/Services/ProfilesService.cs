@@ -1,4 +1,5 @@
-﻿using VacIT.Data.Base;
+﻿using Microsoft.EntityFrameworkCore;
+using VacIT.Data.Base;
 using VacIT.Models;
 
 namespace VacIT.Data.Services
@@ -8,5 +9,20 @@ namespace VacIT.Data.Services
         public ProfilesService(VacITContext context) : base(context)
         {
         }
+
+        public async Task<IEnumerable<Profile>> GetAllProfilesAsync()
+        {
+            return await _context.Profiles
+                .Include(l => l.LoginInfo)
+                .ToListAsync();
+        }
+
+        public async Task<Profile> GetProfileByIdAsync(int id)
+        {
+            return await _context.Profiles
+                .Include(l => l.LoginInfo)
+                .FirstAsync(p => p.Id == id);
+        }
+
     }
 }
