@@ -52,6 +52,12 @@
 
     <div class="container">
         <main role="main" class="pb-3">
+            @if (TempData["LoginSuccess"] != null)
+            {
+                <div class="col-md-6 offset-3 alert alert-success text-center">
+                    <span>@TempData["LoginSuccess"]</span>
+                </div>
+            }
             @RenderBody()
         </main>
     </div>
