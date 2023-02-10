@@ -4,7 +4,7 @@ using VacIT.Data.Base;
 
 namespace VacIT.Models
 {
-    public class Employer : IEntityBase
+    public class Employer : ILoginInfoEntityBase
     {
         public int Id { get; set; }
 

@@ -155,13 +155,12 @@ namespace VacIT.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("LoginsInfo");
+                    b.ToTable("LoginInfo");
                 });
 
             modelBuilder.Entity("VacIT.Models.Profile", b =>

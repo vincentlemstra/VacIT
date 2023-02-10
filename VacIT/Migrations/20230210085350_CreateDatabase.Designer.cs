@@ -12,7 +12,7 @@ using VacIT.Data;
 namespace VacIT.Migrations
 {
     [DbContext(typeof(VacITContext))]
-    [Migration("20230207133807_CreateDatabase")]
+    [Migration("20230210085350_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -158,13 +158,12 @@ namespace VacIT.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("LoginsInfo");
+                    b.ToTable("LoginInfo");
                 });
 
             modelBuilder.Entity("VacIT.Models.Profile", b =>

@@ -4,7 +4,7 @@ using VacIT.Data.Base;
 
 namespace VacIT.Models
 {
-    public class Profile : IEntityBase
+    public class Profile : ILoginInfoEntityBase
     {
         // todo restricties toevoegen
         // todo error messages toevoegen

@@ -12,18 +12,18 @@ namespace VacIT.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "LoginsInfo",
+                name: "LoginInfo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Role = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LoginsInfo", x => x.Id);
+                    table.PrimaryKey("PK_LoginInfo", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -45,9 +45,9 @@ namespace VacIT.Migrations
                 {
                     table.PrimaryKey("PK_Employers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Employers_LoginsInfo_LoginInfoId",
+                        name: "FK_Employers_LoginInfo_LoginInfoId",
                         column: x => x.LoginInfoId,
-                        principalTable: "LoginsInfo",
+                        principalTable: "LoginInfo",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -74,9 +74,9 @@ namespace VacIT.Migrations
                 {
                     table.PrimaryKey("PK_Profiles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Profiles_LoginsInfo_LoginInfoId",
+                        name: "FK_Profiles_LoginInfo_LoginInfoId",
                         column: x => x.LoginInfoId,
-                        principalTable: "LoginsInfo",
+                        principalTable: "LoginInfo",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -174,7 +174,7 @@ namespace VacIT.Migrations
                 name: "Employers");
 
             migrationBuilder.DropTable(
-                name: "LoginsInfo");
+                name: "LoginInfo");
         }
     }
 }

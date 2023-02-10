@@ -5,7 +5,7 @@ namespace VacIT.Data.Base
 {
     public class EntityBaseRepository<T> : IEntityBaseRepository<T> where T : class, IEntityBase, new()
     {
-        private readonly VacITContext _context;
+        protected readonly VacITContext _context;
 
         public EntityBaseRepository(VacITContext context)
         {
@@ -21,6 +21,10 @@ namespace VacIT.Data.Base
         public async Task DeleteAsync(int id)
         {
             var entity = await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
+            if (entity == null)
+            {
+                return;
+            }
             EntityEntry entityEntry = _context.Entry<T>(entity);
             entityEntry.State = EntityState.Deleted;
 

@@ -10,10 +10,10 @@ namespace VacIT.Data
         {
         }
 
+        public DbSet<LoginInfo> LoginInfo { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Employer> Employers { get; set; }
         public DbSet<JobListing> JobListings { get; set; }
-        public DbSet<LoginInfo> LoginsInfo { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
     }
 }
