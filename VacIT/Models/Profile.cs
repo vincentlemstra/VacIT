@@ -27,7 +27,7 @@ namespace VacIT.Models
         public string CVURL { get; set; }
 
         // Relationships
-        public List<JobApplication> JobApplications { get; set; }
+        public ICollection<JobApplication> JobApplications { get; set; }
 
         // Login
         public int LoginInfoId { get; set; }

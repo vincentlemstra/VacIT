@@ -37,6 +37,6 @@ namespace VacIT.Models
         public string Description { get; set; }
 
         // Relationships
-        public List<JobApplication> JobApplications { get; set; }
+        public ICollection<JobApplication> JobApplications { get; set; }
     }
 }

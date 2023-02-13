@@ -29,8 +29,8 @@ namespace VacIT.ApiControllers
         }
 
         // GET api/LobListings/5
-        [HttpGet("{id}")]
-        public ActionResult<JobListing> GetJobListing(int id)
+        [HttpGet("{id}", Name = "JobListingById")]
+        public ActionResult<JobListing> GetJobListingById(int id)
         {
             if (_context.JobListings == null)
             {
@@ -54,7 +54,7 @@ namespace VacIT.ApiControllers
             }
             _context.JobListings.Add(newJobListing);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetJobListing), new { id = newJobListing.Id }, null); // HTTP RESULT CODE 201
+            return CreatedAtAction(nameof(GetJobListingById), new { id = newJobListing.Id }, null); // HTTP RESULT CODE 201
             // return CreatedAtAction(nameof(GetJobListing), new { id = newJobListing.Id }, newJobListing); // HTTP RESULT CODE 201
         }
 

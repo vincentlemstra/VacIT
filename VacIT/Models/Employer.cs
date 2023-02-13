@@ -30,7 +30,7 @@ namespace VacIT.Models
         public string Description { get; set; }
 
         // Relationships
-        public List<JobListing> JobListings { get; set; }
+        public ICollection<JobListing> JobListings { get; set; }
 
         // Login
         public int LoginInfoId { get; set; }
