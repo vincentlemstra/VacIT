@@ -6,8 +6,8 @@ namespace VacIT.Models
 {
     public class JobListing : IEntityBase
     {
-        // todo restricties toevoegen
-        // todo error messages toevoegen
+        // todo-2 restricties toevoegen
+        // todo-2 error messages toevoegen
 
         public int Id { get; set; }
 

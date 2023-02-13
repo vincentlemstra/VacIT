@@ -25,6 +25,7 @@ namespace VacIT.Controllers
             return View();
         }
 
+        // Post: Register
         [HttpPost]
         public async Task<IActionResult> Login(LoginInfo loginInfo)
         {
@@ -69,7 +70,7 @@ namespace VacIT.Controllers
                     };
 
                     // SignInAsync is a Extension method for Sign in a principal for the specified scheme.
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity),authProperties);
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
                     TempData["LoginSuccess"] = "Succesvol login";
                     return LocalRedirect("/");
 
@@ -83,12 +84,26 @@ namespace VacIT.Controllers
             return View(loginInfo);
         }
 
-        public async Task <IActionResult> Logout()
+        public async Task<IActionResult> Logout()
         {
             // SignOutAsync is Extension method for SignOut 
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             // Redirect to home page    
             return LocalRedirect("/");
+        }
+
+        // Get: Register
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        // todo-0 register
+        // Post: Register
+        [HttpPost]
+        public async Task<IActionResult> Register([Bind("Email","Password")]LoginInfo loginInfo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

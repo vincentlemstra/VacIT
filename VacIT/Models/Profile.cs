@@ -6,8 +6,8 @@ namespace VacIT.Models
 {
     public class Profile : ILoginInfoEntityBase
     {
-        // todo restricties toevoegen
-        // todo error messages toevoegen
+        // todo-2 restricties toevoegen
+        // todo-2 error messages toevoegen
 
         [Key]
         public int Id { get; set; }

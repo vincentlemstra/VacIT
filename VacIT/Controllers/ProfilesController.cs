@@ -45,6 +45,7 @@ namespace VacIT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProfilePicURL,FirstName,LastName,Email,Password,BirthDate,Phone,Address,Zipcode,Residence,Motivation,CVURL")] Profile profile)
         {
+            // todo-0 signup met account
             if (ModelState.IsValid)
             {
                 await _service.AddAsync(profile);
