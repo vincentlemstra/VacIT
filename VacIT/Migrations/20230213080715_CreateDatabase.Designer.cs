@@ -12,7 +12,7 @@ using VacIT.Data;
 namespace VacIT.Migrations
 {
     [DbContext(typeof(VacITContext))]
-    [Migration("20230210152435_CreateDatabase")]
+    [Migration("20230213080715_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />

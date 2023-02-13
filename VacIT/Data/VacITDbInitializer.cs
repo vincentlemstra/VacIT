@@ -45,7 +45,7 @@ namespace VacIT.Data
                     {
                         new Profile()
                         {
-                            ProfilePicURL = "img/profile/profile.png",
+                            ProfilePicURL = "/img/profile/profile.png",
                             FirstName = "Henriette",
                             LastName = "Loughan",
                             LoginInfo = new LoginInfo() { Email = "henriette@loughan.com", Password = "password", Role = Role.User},
@@ -59,7 +59,7 @@ namespace VacIT.Data
                         },
                         new Profile()
                         {
-                            ProfilePicURL = "img/profile/profile.png",
+                            ProfilePicURL = "/img/profile/profile.png",
                             FirstName = "Jeremie",
                             LastName = "Pocke",
                             LoginInfo = new LoginInfo() { Email = "jeremie@pocke.com", Password = "password", Role = Role.User },
@@ -73,7 +73,7 @@ namespace VacIT.Data
                         },
                         new Profile()
                         {
-                            ProfilePicURL = "img/profile/profile.png",
+                            ProfilePicURL = "/img/profile/profile.png",
                             FirstName = "Erma",
                             LastName = "MacCahee",
                             LoginInfo = new LoginInfo() { Email = "erma@maccahee.com", Password = "password", Role = Role.User },
@@ -96,7 +96,7 @@ namespace VacIT.Data
                     {
                         new Employer()
                         {
-                            LogoURL = "img/employer/dsm.svg",
+                            LogoURL = "/img/employer/dsm.svg",
                             Name = "DSM",
                             LoginInfo = new LoginInfo() { Email = "info@dsm.com",  Password = "password", Role = Role.Employer },
                             WebsiteURL = "https://www.dsm.com/nederland/nl_NL/home.html",
@@ -107,7 +107,7 @@ namespace VacIT.Data
                         },
                         new Employer()
                         {
-                            LogoURL = "img/employer/hostnet.png",
+                            LogoURL = "/img/employer/hostnet.png",
                             Name = "Hostnet BV",
                             LoginInfo = new LoginInfo() { Email = "info@hostnet.nl", Password = "password", Role = Role.Employer },
                             WebsiteURL = "https://www.hostnet.nl/",
@@ -118,7 +118,7 @@ namespace VacIT.Data
                         },
                         new Employer()
                         {
-                            LogoURL = "img/employer/educom.png",
+                            LogoURL = "/img/employer/educom.png",
                             Name = "Educom",
                             LoginInfo = new LoginInfo() { Email = "info@edu-deta.com", Password = "password", Role = Role.Employer },
                             WebsiteURL = "https://edu-deta.com/",
@@ -138,7 +138,7 @@ namespace VacIT.Data
                     {
                         new JobListing()
                         {
-                            LogoURL = "img/job_listing/windows.png",
+                            LogoURL = "/img/job_listing/windows.png",
                             Employer = context.Employers.Single(e => e.Name == "DSM"),
                             Name = "Applicatie Beheerder voor DSM Sittard",
                             Level = "Medior",
@@ -148,7 +148,7 @@ namespace VacIT.Data
                         },
                         new JobListing()
                         {
-                            LogoURL = "img/job_listing/linux.png",
+                            LogoURL = "/img/job_listing/linux.png",
                             Employer = context.Employers.Single(e => e.Name == "Hostnet BV"),
                             Name = "Linux Systeembeheerder voor Hostnet BV",
                             Level = "Junior",
@@ -158,9 +158,9 @@ namespace VacIT.Data
                         },
                         new JobListing()
                         {
-                            LogoURL = "img/job_listing/php.png",
+                            LogoURL = "/img/job_listing/php.png",
                             Employer = context.Employers.Single(e => e.Name == "Educom"),
-                            Name = "PHP Developer",
+                            Name = "PHP Developer voor Educom Arnhem",
                             Level = "Medior",
                             Date = new DateTime(2023, 1, 28),
                             Residence = "Arnhem",
@@ -168,7 +168,7 @@ namespace VacIT.Data
                         },
                         new JobListing()
                         {
-                            LogoURL = "img/job_listing/csharp.png",
+                            LogoURL = "/img/job_listing/csharp.png",
                             Employer = context.Employers.Single(e => e.Name == "Educom"),
                             Name = "C# Developer voor Educom Arnhem",
                             Level = "Junior",
@@ -178,7 +178,7 @@ namespace VacIT.Data
                         },
                         new JobListing()
                         {
-                            LogoURL = "img/job_listing/python.png",
+                            LogoURL = "/img/job_listing/python.png",
                             Employer = context.Employers.Single(e => e.Name == "Educom"),
                             Name = "Python Developer voor Educom Arnhem",
                             Level = "Senior",
@@ -188,7 +188,7 @@ namespace VacIT.Data
                         },
                         new JobListing()
                         {
-                            LogoURL = "img/job_listing/java-script.png",
+                            LogoURL = "/img/job_listing/java-script.png",
                             Employer = context.Employers.Single(e => e.Name == "DSM"),
                             Name = "JavaScript Developer voor DSM Sittard",
                             Level = "Junior",
@@ -198,7 +198,7 @@ namespace VacIT.Data
                         },
                         new JobListing()
                         {
-                            LogoURL = "img/job_listing/csharp.png",
+                            LogoURL = "/img/job_listing/csharp.png",
                             Employer = context.Employers.Single(e => e.Name == "Hostnet BV"),
                             Name = "C# Developer voor Hostnet BV",
                             Level = "Junior",
