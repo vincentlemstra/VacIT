@@ -5,20 +5,67 @@
     </li>
 
     <li class="nav-item">
-    <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Inloggen</a>
+        <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Inloggen</a>
 
     </li>
 }
-else
+else if (User.Identity.IsAuthenticated && User.IsInRole("User"))
 {
     <li class="nav-item">
-        @*todo-0 profielen laten linken met ingelogd persoon *@
         <a class="nav-link text-dark" asp-controller="Profiles" asp-action="Details" asp-route-id="">Mijn profiel</a>
     </li>
 
     <li class="nav-item">
-        @*todo-3  sollicitaties laten linken met ingelogd persoon*@
         <a class="nav-link text-dark" asp-controller="Profiles" asp-action="Details" asp-route-id="">Mijn sollicitaties</a>
+    </li>
+
+    <li class="nav-item">
+        <form asp-controller="Account" asp-action="Logout">
+            <button class="btn btn-danger my-2 my-sm-0">Logout</button>
+        </form>
+    </li>
+}
+else if (User.Identity.IsAuthenticated && User.IsInRole("Employer"))
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="JobListings" asp-action="Create" asp-route-id="">Vacature toevoegen</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Employers" asp-action="Details" asp-route-id="">Mijn Profiel</a>
+    </li>
+
+    <li class="nav-item">
+        <form asp-controller="Account" asp-action="Logout">
+            <button class="btn btn-danger my-2 my-sm-0">Logout</button>
+        </form>
+    </li>
+}
+
+else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <li class="nav-item dropdown">
+        <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Add
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" asp-controller="Profiles" asp-action="Create">Profielen</a>
+            <a class="dropdown-item" asp-controller="Employers" asp-action="Create">Werkgevers</a>
+            <a class="dropdown-item" asp-controller="JobListings" asp-action="Create">Vacatures</a>
+        </div>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Admin
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" asp-controller="Profiles" asp-action="Index">Profielen</a>
+            <a class="dropdown-item" asp-controller="Employers" asp-action="Index">Werkgevers</a>
+            <a class="dropdown-item" asp-controller="JobListings" asp-action="Index">Vacatures</a>
+        </div>
     </li>
 
     <li class="nav-item">

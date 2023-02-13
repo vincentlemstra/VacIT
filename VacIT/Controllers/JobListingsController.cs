@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using System.Dynamic;
+using System.Security.Claims;
 using VacIT.Data.Services;
 using VacIT.Models;
 
@@ -40,14 +41,14 @@ namespace VacIT.Controllers
 
         // POST: JobListings/Create
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Employer,LogoURL, Name,Level,Date,Residence,Description")] JobListing jobListing)
+        public async Task<IActionResult> Create([Bind("Employer,LogoURL,Name,Level,Date,Residence,Description")] JobListing jobListing)
         {
-            if (ModelState.IsValid)
-            {
-                await _service.AddAsync(jobListing);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(jobListing);
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Employer employer = await _service.GetEmployerById(Int32.Parse(id));
+
+            await _service.AddNewJobListingAsync(employer, jobListing);
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: JobListings/Details/1

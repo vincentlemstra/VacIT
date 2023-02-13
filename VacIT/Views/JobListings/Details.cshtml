@@ -19,13 +19,14 @@
             <div class="employer-logo row">
                 <img src=@Url.Content(Model.jobListingDetails.Employer.LogoURL) alt="Employer Logo" />
             </div>
-
         </div>
         <div class="detail-right col-9">
             <h4>@Model.jobListingDetails.Date.ToString("dd/MM/yyyy") - <a asp-action="Edit" asp-route-id="@Model.jobListingDetails.Id">Bewerken</a></h4>
             <h1>@Model.jobListingDetails.Name</h1>
             <h3>@Model.jobListingDetails.Level - @Model.jobListingDetails.Residence</h3>
             <p>@Model.jobListingDetails.Description</p>
+
+            
 
             <br />
             <a href="#"><h2>Solliciteer Direct!</h2></a>

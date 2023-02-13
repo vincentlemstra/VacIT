@@ -98,7 +98,7 @@ namespace VacIT.Controllers
             return View();
         }
 
-        // todo-0 register
+        // todo-0 register -> check udemy course (working with movie data)
         // Post: Register
         [HttpPost]
         public async Task<IActionResult> Register([Bind("Email","Password")]LoginInfo loginInfo)

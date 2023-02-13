@@ -7,5 +7,7 @@ namespace VacIT.Data.Services
     {
         Task<JobListing> GetJobListingByIdAsync(int id);
         Task<IEnumerable<JobListing>> GetAllJobListingsByEmployerIdAsync(int id);
+        Task AddNewJobListingAsync(Employer employer, JobListing data);
+        Task<Employer> GetEmployerById(int id);
     }
 }

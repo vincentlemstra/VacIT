@@ -22,5 +22,27 @@ namespace VacIT.Data.Services
         {
             return await _context.JobListings.Where(n => n.EmployerId == id).ToListAsync();
         }
+
+        public async Task AddNewJobListingAsync(Employer employer, JobListing data)
+        {
+            var newJobListing = new JobListing()
+            {
+                EmployerId = employer.Id,
+                LogoURL = data.LogoURL,
+                Name = data.Name,
+                Level = data.Level,
+                Date = DateTime.Today,
+                Residence = employer.Residence,
+                Description = data.Description,
+            };
+
+            await _context.JobListings.AddAsync(newJobListing);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Employer> GetEmployerById(int id)
+        {
+            return await _context.Employers.FirstAsync(n => n.LoginInfoId == id);
+        }
     }
 }
