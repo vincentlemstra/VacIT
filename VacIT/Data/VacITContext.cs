@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VacIT.Models;
+using VacIT.Data.DTO;
 
 namespace VacIT.Data
 {
@@ -15,5 +16,6 @@ namespace VacIT.Data
         public DbSet<Employer> Employers { get; set; }
         public DbSet<JobListing> JobListings { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
+        public DbSet<VacIT.Data.DTO.EmployerDTO> EmployerDTO { get; set; } = default!;
     }
 }

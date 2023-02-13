@@ -4,6 +4,7 @@ using VacIT.Data;
 using VacIT.Data.Services;
 using VacIT.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<VacITContext>(options =>
@@ -18,6 +19,10 @@ builder.Services.AddScoped<IEmployersService, EmployersService>();
 builder.Services.AddControllersWithViews();
 builder.Services.ConfigureCors();
 builder.Services.ConfigureIISIntegration();
+builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 // Authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
