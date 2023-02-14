@@ -14,6 +14,10 @@ export class JoblistingRepositoryService {
     return this.http.get<JobListing[]>(this.createCompleteRoute(route, this.envUrl.urlAddress));
   }
 
+  public getJobListing = (route: string) => {
+    return this.http.get<JobListing>(this.createCompleteRoute(route, this.envUrl.urlAddress));
+  }
+
   public createJobListing = (route: string, jobListing: JobListing) => {
     return this.http.post<JobListing>(this.createCompleteRoute(route, this.envUrl.urlAddress), jobListing, this.generateHeaders());
   }
