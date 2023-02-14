@@ -9,6 +9,8 @@ namespace VacIT.Data
         {
             CreateMap<JobListing, JobListingDTO>();
             CreateMap<Employer, EmployerDTO>();
+            CreateMap<JobListingForCreationDTO, JobListing>();
+            CreateMap<JobListingForUpdateDTO, JobListing>();
         }
     }
 }

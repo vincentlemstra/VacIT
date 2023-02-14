@@ -47,45 +47,39 @@ namespace VacIT.ApiControllers
 
         // POST api/LobListings
         [HttpPost]
-        public ActionResult CreateJobListing([FromBody] JobListing newJobListing)
+        public ActionResult CreateJobListing([FromBody] JobListingForCreationDTO jobListing)
         {
-            if (_context.JobListings == null)
-            {
-                return NotFound("Database not connected");
-            }
-            _context.JobListings.Add(newJobListing);
+            var jobListingEntity = _mapper.Map<JobListing>(jobListing);
+
+            _context.JobListings.Add(jobListingEntity);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetJobListingById), new { id = newJobListing.Id }, null); // HTTP RESULT CODE 201
-            // return CreatedAtAction(nameof(GetJobListing), new { id = newJobListing.Id }, newJobListing); // HTTP RESULT CODE 201
+
+            var newJobListing = _mapper.Map<JobListingDTO>(jobListingEntity);
+            return CreatedAtAction(nameof(GetJobListingById), new { id = newJobListing.Id }, newJobListing); // HTTP RESULT CODE 201
         }
 
         // PUT api/LobListings/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] JobListing updatedJobListing)
+        public ActionResult Put(int id, [FromBody] JobListingForUpdateDTO jobListing)
         {
-            if (_context.JobListings == null)
-            {
-                return NotFound("Database not connected");
-            }
-            if (id != updatedJobListing.Id)
+            var jobListingEntity = _context.JobListings.FirstOrDefault(n => n.Id == id);
+            if (jobListingEntity == null)
             {
                 ModelState.AddModelError("Id", "Does not match Id in URL");
                 return BadRequest(ModelState);
             }
-            _context.JobListings.Update(updatedJobListing);
+
+            _mapper.Map(jobListing, jobListingEntity);
+            _context.JobListings.Update(jobListingEntity);
             _context.SaveChanges();
-            return NoContent(); // HTTP RESULT CODE 204
+            return NoContent();
         }
 
         // DELETE api/LobListings/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            if (_context.JobListings == null)
-            {
-                return NotFound("Database not connected");
-            }
-            var jobListing = _context.JobListings.Find(id);
+            var jobListing = _context.JobListings.FirstOrDefault(n => n.Id == id);
             if (jobListing == null)
             {
                 return NotFound();
