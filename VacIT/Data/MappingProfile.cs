@@ -8,9 +8,10 @@ namespace VacIT.Data
         public MappingProfile()
         {
             CreateMap<JobListing, JobListingDTO>();
-            CreateMap<Employer, EmployerDTO>();
             CreateMap<JobListingForCreationDTO, JobListing>();
             CreateMap<JobListingForUpdateDTO, JobListing>();
+
+            CreateMap<Employer, EmployerDTO>();
         }
     }
 }
