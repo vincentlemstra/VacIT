@@ -1,4 +1,6 @@
-﻿namespace VacIT.Data.DTO
+﻿using VacIT.Models;
+
+namespace VacIT.Data.DTO
 {
     public class EmployerDTO
     {
@@ -10,6 +12,6 @@
         public string Zipcode { get; set; }
         public string Residence { get; set; }
         public string Description { get; set; }
-        public IEnumerable<JobListingDTO> JobListings { get; set; }
+        public List<JobListingDTO> JobListings { get; set; }
     }
 }

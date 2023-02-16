@@ -5,10 +5,13 @@ using VacIT.Data.Services;
 using VacIT.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using System.Text.Json.Serialization;
+using NLog;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<VacITContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("VacITContext") ?? throw new InvalidOperationException("Connection string 'VacITContext' not found.")));
+
+LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/Logger/nlog.config"));
 
 // Services configuration
 builder.Services.AddScoped<IJobListingsService, JobListingsService>();
@@ -20,6 +23,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.ConfigureCors();
 builder.Services.ConfigureIISIntegration();
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.ConfigureLoggerService();
 
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);

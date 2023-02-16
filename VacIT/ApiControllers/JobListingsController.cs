@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LoggerService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VacIT.Data;
@@ -15,11 +16,13 @@ namespace VacIT.ApiControllers
     {
         private readonly VacITContext _context;
         private readonly IMapper _mapper;
+        private readonly ILoggerManager _logger;
 
-        public JobListingsController(VacITContext context, IMapper mapper)
+        public JobListingsController(VacITContext context, IMapper mapper, ILoggerManager logger)
         {
             _context = context;
             _mapper = mapper;
+            _logger = logger;
         }
 
         // GET: api/LobListings
@@ -27,7 +30,7 @@ namespace VacIT.ApiControllers
         public ActionResult<IEnumerable<JobListing>> GetAllJobListings()
         {
             //var jobListings = _context.JobListings.Include(n => n.Employer).ToList();
-            var jobListings = _context.JobListings.Include(n => n.Employer).ToList();
+            var jobListings = _context.JobListings.ToList();
             var result = _mapper.Map<IEnumerable<JobListingDTO>>(jobListings);
             return Ok(result);
         }
@@ -36,7 +39,9 @@ namespace VacIT.ApiControllers
         [HttpGet("{id}", Name = "JobListingById")]
         public ActionResult<JobListing> GetJobListingById(int id)
         {
-            var jobListing = _context.JobListings.FirstOrDefault(n => n.Id == id);
+            //var jobListing = _context.JobListings.FirstOrDefault(n => n.Id == id);
+            var jobListing = _context.JobListings.Include(n => n.Employer).FirstOrDefault(n => n.Id == id);
+
             if (jobListing == null)
             {
                 return NotFound();

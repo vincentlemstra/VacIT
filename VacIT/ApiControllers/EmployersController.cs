@@ -32,9 +32,9 @@ namespace VacIT.ApiControllers
             return Ok(result);
         }
 
-        // GET api/Employers/5
+        //GET api/Employers/5
         [HttpGet("{id}")]
-        public ActionResult<Employer> GetEmployerById(int id)
+        private ActionResult<Employer> GetEmployerById(int id)
         {
             var employer = _context.Employers
                 .Include(jl => jl.JobListings)

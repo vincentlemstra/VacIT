@@ -10,5 +10,5 @@ export interface Employer {
     residence: string;
     description: string;
 
-    joblistings?: JobListing[];
+    jobListings?: JobListing[];
 }

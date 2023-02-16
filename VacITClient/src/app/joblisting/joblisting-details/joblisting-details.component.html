@@ -29,18 +29,18 @@
                     <p><strong>NIVEU</strong></p>
                 </div>
             </div>
-            <div *ngFor="let joblisting of joblisting.employer.joblistings"  class="row" >
+
+            <div *ngFor="let joblisting of joblisting.employer.jobListings"  class="row" >
                 <div class="col-3">
-                    <p><strong>{{joblisting.employer.name}}</strong></p>
+                    <p><strong>{{joblisting.date | date: 'dd/MM/yyyy' }}</strong></p>
                 </div>
                 <div class="col-6">
-                    <p><strong>{{joblisting.value}}</strong></p>
+                    <p><strong>{{joblisting.name}}</strong></p>
                 </div>
-                <!-- <div class="col-3">
-                    <p><strong>{{joblisting.employer.level}}</strong></p>
-                </div> -->
-            </div>
-            
+                <div class="col-3">
+                    <p><strong>{{joblisting.level}}</strong></p>
+                </div>
+            </div> 
         </div>
     </div>
 </div>
