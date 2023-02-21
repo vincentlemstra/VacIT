@@ -3,8 +3,8 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
             <div class="container-fluid">
                 <!-- Home -->
-                <a class="navbar-brand" [routerLink]="['/home']" routerLinkActive="active"
-				[routerLinkActiveOptions]="{exact: true}">Home</a>
+                <a class="navbar-brand" [routerLink]="['']" routerLinkActive="active"
+				[routerLinkActiveOptions]="{exact: true}">VacIT</a>
                 <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
                     [attr.aria-expanded]="!isCollapsed" aria-controls="collapseNav">
                     <span class="navbar-toggler-icon"></span>
@@ -14,11 +14,7 @@
                 <div class="collapse navbar-collapse" id="collapseNav" [collapse]="!isCollapsed" [isAnimated]="true">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/joblisting/list']" routerLinkActive="active"
-                            [routerLinkActiveOptions]="{exact: true}">Vacatures</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Werkgevers</a>
+                            <a class="nav-link" [routerLink]="['employers']">Werkgevers</a>
                         </li>
                     </ul>
                 </div>

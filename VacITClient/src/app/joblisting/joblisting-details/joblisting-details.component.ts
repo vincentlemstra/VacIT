@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EmployerRepositoryService } from 'src/app/shared/services/employer-repository.service';
 import { ErrorHandlerService } from 'src/app/shared/services/error-handler.service';
 import { JoblistingRepositoryService } from 'src/app/shared/services/joblisting-repository.service';
-import { Employer } from 'src/app/_interfaces/employer.model';
 import { JobListing } from 'src/app/_interfaces/joblisting.model';
 
 @Component({
@@ -13,13 +12,11 @@ import { JobListing } from 'src/app/_interfaces/joblisting.model';
   styleUrls: ['./joblisting-details.component.css']
 })
 export class JoblistingDetailsComponent implements OnInit {
-  joblisting: JobListing;
-  employer: Employer;
+  joblisting: JobListing | undefined;
   errorMessage: string = '';
 
   constructor (
     private jobListingRepository: JoblistingRepositoryService, 
-    private router: Router,
     private activeRoute: ActivatedRoute, 
     private errorHandler: ErrorHandlerService
   ) { }
@@ -29,7 +26,8 @@ export class JoblistingDetailsComponent implements OnInit {
   }
 
   getJobListingDetails = () => {
-    const id: string = this.activeRoute.snapshot.params['id'];
+    const routeParams = this.activeRoute.snapshot.paramMap;
+    const id = Number(routeParams.get('joblistingId'))
     const apiUrl: string = `api/JobListings/${id}`;
 
     this.jobListingRepository.getJobListing(apiUrl)

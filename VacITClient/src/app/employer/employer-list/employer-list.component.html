@@ -1,0 +1,36 @@
+<div class="row">
+<div class="col-md-12">
+    <div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Logo</th>
+            <th>Bedrijfsnaam</th>
+            <th>Website </th>
+            <th>Adres</th>
+            <th>Postcode</th>
+            <th>Plaats</th>
+            <th>Beschrijving</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let employer of employers">
+            <td>{{employer.logoURL}}</td>
+            <td>{{employer.name}}</td>
+            <td>{{employer.address}}</td>
+            <td>{{employer.zipcode}}</td>
+            <td>{{employer.residence}}</td>
+            <td>{{employer.description}}</td>
+
+            <td><button type="button" id="details" class="btn btn-primary" 
+            [title]="employer.name + ' Details'"
+            [routerLink]="['/employers', employer.id]"
+            >Details</button></td>
+            <td><button type="button" id="update" class="btn btn-success">Update</button></td>
+            <td><button type="button" id="delete" class="btn btn-danger">Delete</button></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+</div>

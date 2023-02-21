@@ -40,7 +40,10 @@ namespace VacIT.ApiControllers
         public ActionResult<JobListing> GetJobListingById(int id)
         {
             //var jobListing = _context.JobListings.FirstOrDefault(n => n.Id == id);
-            var jobListing = _context.JobListings.Include(n => n.Employer).FirstOrDefault(n => n.Id == id);
+            var jobListing = _context.JobListings
+                .Include(n => n.Employer)
+                .Include(e => e.Employer.JobListings)
+                .FirstOrDefault(n => n.Id == id);
 
             if (jobListing == null)
             {

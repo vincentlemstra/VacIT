@@ -14,7 +14,9 @@ export class JoblistingListComponent implements OnInit {
   joblistings: JobListing[];
   errorMessage: string = '';
 
-  constructor(private repository: JoblistingRepositoryService, private errorHandler: ErrorHandlerService,
+  constructor(
+    private repository: JoblistingRepositoryService, 
+    private errorHandler: ErrorHandlerService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -31,10 +33,5 @@ export class JoblistingListComponent implements OnInit {
         this.errorMessage = this.errorHandler.errorMessage;
       }
     })
-  }
-
-  public getJobListingDetails = (id) => {
-    const detailsUrl: string = `/joblisting/details/${id}`;
-    this.router.navigate([detailsUrl]);
   }
 }
