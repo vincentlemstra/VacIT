@@ -17,11 +17,11 @@ namespace VacIT.Data.Services
                 .ToListAsync();
         }
 
-        public async Task<Profile> GetProfileByIdAsync(int id)
+        public async Task<Profile> GetProfileByLoginInfoIdAsync(int loginInfoId)
         {
             return await _context.Profiles
                 .Include(l => l.LoginInfo)
-                .FirstAsync(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.LoginInfoId == loginInfoId);
         }
 
     }

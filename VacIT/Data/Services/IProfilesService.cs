@@ -6,7 +6,7 @@ namespace VacIT.Data.Services
     public interface IProfilesService : IEntityBaseRepository<Profile>
     {
 
-        Task<Profile> GetProfileByIdAsync(int id);
+        Task<Profile> GetProfileByLoginInfoIdAsync(int id);
         Task<IEnumerable<Profile>> GetAllProfilesAsync();
 
     }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using System.Dynamic;
+using System.Security.Claims;
 using VacIT.Data.Services;
 using VacIT.Models;
 
@@ -26,7 +27,7 @@ namespace VacIT.Controllers
         // GET: Profiles/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var profileDetails = await _service.GetProfileByIdAsync(id);
+            var profileDetails = await _service.GetProfileByLoginInfoIdAsync(id);
             if (profileDetails == null)
             {
                 return View("NotFound");
