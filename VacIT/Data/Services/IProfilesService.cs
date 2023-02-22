@@ -10,5 +10,7 @@ namespace VacIT.Data.Services
         Task<IEnumerable<Profile>> GetAllProfilesAsync();
         Task<Profile> GetProfileByEmailAsync(string email);
         Task CreateProfileWithLoginAsync(RegisterVM data);
+        Task<Profile> GetProfileWithLoginAsync(int id);
+        Task UpdateProfileWithLoginAsync(RegisterVM data);
     }
 }

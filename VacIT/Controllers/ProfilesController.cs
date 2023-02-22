@@ -63,25 +63,42 @@ namespace VacIT.Controllers
         // GET: Profiles/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            var profileDetails = await _service.GetByIdAsync(id);
-            if (profileDetails == null)
+            var profileDetails = await _service.GetProfileWithLoginAsync(id);
+            if (profileDetails == null) return View("NotFound");
+
+            var response = new RegisterVM()
             {
-                return View("NotFound");
-            }
-            return View(profileDetails);
+                Id = profileDetails.Id,
+                ProfilePicURL = profileDetails.ProfilePicURL,
+                FirstName = profileDetails.FirstName,
+                LastName = profileDetails.LastName,
+                Email = profileDetails.LoginInfo.Email,
+                Password = profileDetails.LoginInfo.Password,
+                BirthDate = profileDetails.BirthDate,
+                Phone = profileDetails.Phone,
+                Address = profileDetails.Address,
+                Zipcode = profileDetails.Zipcode,
+                Residence = profileDetails.Residence,
+                Motivation = profileDetails.Motivation,
+                CVURL = profileDetails.CVURL,
+            };
+
+            return View(response);
         }
 
         // POST: Profiles/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProfilePicURL,FirstName,LastName,Email,Password,BirthDate,Phone,Address,Zipcode,Residence,Motivation,CVURL")] Profile profile)
+        public async Task<IActionResult> Edit(int id, RegisterVM data)
         {
+            if (id != data.Id) return View(data);
+
             if (ModelState.IsValid)
             {
-                await _service.UpdateAsync(id, profile);
-                return RedirectToAction(nameof(Index));
+                await _service.UpdateProfileWithLoginAsync(data);
+                TempData["Success"] = "Gegevens succesvol aangepast.";
+                return View(data);
             }
-            return View(profile);
+            return View(data);
         }
 
         // GET: Profiles/Delete/5

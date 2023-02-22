@@ -1,4 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Net;
+using System.Numerics;
+using System.Reflection.Emit;
+using System.Security.Policy;
 using VacIT.Data.Base;
 using VacIT.Data.ViewModels;
 using VacIT.Models;
@@ -60,6 +64,43 @@ namespace VacIT.Data.Services
             return await _context.Profiles
                 .Include(l => l.LoginInfo)
                 .FirstAsync(p => p.LoginInfoId == loginInfoId);
+        }
+
+        public async Task<Profile> GetProfileWithLoginAsync(int id)
+        {
+            return await _context.Profiles
+                .Include(l => l.LoginInfo)
+                .FirstAsync(n => n.Id == id);
+        }
+
+        public async Task UpdateProfileWithLoginAsync(RegisterVM data)
+        {
+            var dbLoginInfo = await _context.Profiles
+                .Include(l => l.LoginInfo)
+                .FirstOrDefaultAsync(n => n.Id == data.Id);
+                
+            if (dbLoginInfo != null)
+            {
+                dbLoginInfo.LoginInfo.Email = data.Email;
+                dbLoginInfo.LoginInfo.Password = data.Password;
+            }
+            await _context.SaveChangesAsync();
+
+            var dbProfile = await _context.Profiles.FirstOrDefaultAsync(n => n.Id == data.Id);       
+            if (dbProfile != null)
+            {
+                dbProfile.ProfilePicURL = data.ProfilePicURL;
+                dbProfile.FirstName = data.FirstName;
+                dbProfile.LastName = data.LastName;
+                dbProfile.BirthDate = data.BirthDate;
+                dbProfile.Phone = data.Phone;
+                dbProfile.Address = data.Address;
+                dbProfile.Zipcode = data.Zipcode;
+                dbProfile.Residence = data.Residence;
+                dbProfile.Motivation = data.Motivation;
+                dbProfile.CVURL = data.CVURL;
+            }
+            await _context.SaveChangesAsync();
         }
     }
 }

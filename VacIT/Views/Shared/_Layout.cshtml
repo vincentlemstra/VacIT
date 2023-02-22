@@ -37,11 +37,10 @@
 
     <div class="container">
         <main role="main" class="pb-3">
-            @if (TempData["LoginSuccess"] != null || TempData["JobApplicationSuccess"] != null)
+            @if (TempData["Success"] != null)
             {
                 <div class="col-md-6 offset-3 alert alert-success text-center">
-                    <span>@TempData["LoginSuccess"]</span>
-                    <span>@TempData["JobApplicationSuccess"]</span>
+                    <span>@TempData["Success"]</span>
                 </div>
             }
             @RenderBody()

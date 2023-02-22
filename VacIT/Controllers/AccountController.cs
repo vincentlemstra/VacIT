@@ -71,7 +71,7 @@ namespace VacIT.Controllers
 
                     // SignInAsync is a Extension method for Sign in a principal for the specified scheme.
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-                    TempData["LoginSuccess"] = "Succesvol login";
+                    TempData["Success"] = "Succesvol login";
                     return LocalRedirect("/");
 
                 }

@@ -46,12 +46,17 @@
             </div>
             @foreach (JobListing jobListing in Model.employerJobListings)
             {
+                @if (jobListing.Id == Model.jobListingDetails.Id)
+                {
+                    continue;
+                }
+
                 <div class="row">
                     <div class="col-3">
                         <p>@jobListing.Date.ToString("dd/MM/yyyy")</p>
                     </div>
                     <div class="col-6">
-                        <p>@jobListing.Name</p>
+                        <a asp-action="Details" asp-route-id="@jobListing.Id">@jobListing.Name</a>
                     </div>
                     <div class="col-3">
                         <p>@jobListing.Level</p>
