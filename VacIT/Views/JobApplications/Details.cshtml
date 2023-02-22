@@ -1,0 +1,45 @@
+﻿@model IEnumerable<JobApplication>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@ViewBag.NoApplications</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplyDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobListing.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobListing.Employer.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invite)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.ApplyDate.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobListing.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobListing.Employer.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Invite)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

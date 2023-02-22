@@ -17,6 +17,7 @@ LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/Lo
 builder.Services.AddScoped<IJobListingsService, JobListingsService>();
 builder.Services.AddScoped<IProfilesService, ProfilesService>();
 builder.Services.AddScoped<IEmployersService, EmployersService>();
+builder.Services.AddScoped<IJobApplicationsService, JobApplicationsService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

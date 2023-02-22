@@ -92,18 +92,18 @@ namespace VacIT.Controllers
             return LocalRedirect("/");
         }
 
-        // Get: Register
-        public IActionResult Register()
-        {
-            return View();
-        }
+        //// Get: Register
+        //public IActionResult Register()
+        //{
+        //    return View();
+        //}
 
-        // todo-0 register -> check udemy course (working with movie data)
-        // Post: Register
-        [HttpPost]
-        public async Task<IActionResult> Register([Bind("Email","Password")]LoginInfo loginInfo)
-        {
-            throw new NotImplementedException();
-        }
+        //// todo-0 register -> check udemy course (working with movie data)
+        //// Post: Register
+        //[HttpPost]
+        //public async Task<IActionResult> Register([Bind("Email","Password")]LoginInfo loginInfo)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

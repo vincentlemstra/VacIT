@@ -16,7 +16,7 @@ else if (User.Identity.IsAuthenticated && User.IsInRole("User"))
     </li>
 
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-controller="Profiles" asp-action="Details" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Mijn sollicitaties</a>
+        <a class="nav-link text-dark" asp-controller="JobApplications" asp-action="Details" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Mijn sollicitaties</a>
     </li>
 
     <li class="nav-item">

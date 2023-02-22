@@ -4,6 +4,7 @@ using Microsoft.Identity.Client;
 using System.Dynamic;
 using System.Security.Claims;
 using VacIT.Data.Services;
+using VacIT.Data.ViewModels;
 using VacIT.Models;
 
 namespace VacIT.Controllers
@@ -43,16 +44,22 @@ namespace VacIT.Controllers
 
         // POST: Profiles/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProfilePicURL,FirstName,LastName,Email,Password,BirthDate,Phone,Address,Zipcode,Residence,Motivation,CVURL")] Profile profile)
+        public async Task<IActionResult> Create(RegisterVM data)
         {
-            // todo-0 signup met account
-            if (ModelState.IsValid)
-            {
-                await _service.AddAsync(profile);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(profile);
+            //if (!ModelState.IsValid) return View(data);
+
+            //var user = await _service.GetProfileByEmailAsync(data.Email);
+            //if (user != null)
+            //{
+
+            //}
+
+
+            //{
+            //    await _service.AddAsync(data);
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //return View(data);
         }
 
         // GET: Profiles/Edit/5

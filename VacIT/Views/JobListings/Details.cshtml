@@ -26,10 +26,10 @@
             <h3>@Model.jobListingDetails.Level - @Model.jobListingDetails.Residence</h3>
             <p>@Model.jobListingDetails.Description</p>
 
-            
+            <form asp-controller="JobApplications" asp-action="Create">
+                <input type="submit" value="Solliciteer Direct!" class="btn btn-outline-success" />
+            </form>
 
-            <br />
-            <a href="#"><h2>Solliciteer Direct!</h2></a>
             <br />
 
             <h4>Meer Vavatures van @Model.jobListingDetails.Employer.Name</h4>

@@ -17,12 +17,18 @@ namespace VacIT.Data.Services
                 .ToListAsync();
         }
 
+        public async Task<Profile> GetProfileByEmailAsync(string email)
+        {
+            return await _context.Profiles
+                .Include(l => l.LoginInfo)
+                .FirstOrDefaultAsync(e => e.LoginInfo.Email == email);
+        }
+
         public async Task<Profile> GetProfileByLoginInfoIdAsync(int loginInfoId)
         {
             return await _context.Profiles
                 .Include(l => l.LoginInfo)
-                .FirstOrDefaultAsync(p => p.LoginInfoId == loginInfoId);
+                .FirstAsync(p => p.LoginInfoId == loginInfoId);
         }
-
     }
 }

@@ -23,10 +23,9 @@ namespace VacIT.Controllers
             var data = await _service.GetAllJobListingsByEmployerIdAsync(1);
             return View(data);
         }
-
-
         // ============================================
 
+        // GET: /
         public async Task<IActionResult> Index()
         {
             var data = await _service.GetAllAsync();
