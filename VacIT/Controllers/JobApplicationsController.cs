@@ -50,7 +50,6 @@ namespace VacIT.Controllers
             if (ModelState.IsValid)
             {
                 await _service.AddNewJobApplicationAsync(jobApplication);
-                //return RedirectToAction(nameof(Index));
                 TempData["JobApplicationSuccess"] = "Je hebt gesolliciteerd! Het bedrijf zal contact met je opnemen.";
                 return LocalRedirect("/");
             }

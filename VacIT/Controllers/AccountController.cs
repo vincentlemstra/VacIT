@@ -77,7 +77,7 @@ namespace VacIT.Controllers
                 }
                 else
                 {
-                    TempData["Error"] = "Email en/of wachtwoord komt niet overeen";
+                    TempData["LoginError"] = "Email en/of wachtwoord komt niet overeen";
                     return View(loginInfo);
                 }
             }

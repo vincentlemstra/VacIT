@@ -46,20 +46,18 @@ namespace VacIT.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(RegisterVM data)
         {
-            //if (!ModelState.IsValid) return View(data);
+            if (!ModelState.IsValid) return View(data);
 
-            //var user = await _service.GetProfileByEmailAsync(data.Email);
-            //if (user != null)
-            //{
+            var user = await _service.GetProfileByEmailAsync(data.Email);
+            if (user != null)
+            {
+                TempData["EmailError"] = "Dit email adres bestaat al";
+                return View(data);
+            }
 
-            //}
-
-
-            //{
-            //    await _service.AddAsync(data);
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //return View(data);
+            await _service.CreateProfileWithLoginAsync(data);
+            TempData["RegisterSuccess"] = "Succesvolle register. Je kunt nu inloggen.";
+            return View("~/Views/Account/Login.cshtml");
         }
 
         // GET: Profiles/Edit/5

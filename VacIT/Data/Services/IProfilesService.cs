@@ -1,4 +1,5 @@
 ﻿using VacIT.Data.Base;
+using VacIT.Data.ViewModels;
 using VacIT.Models;
 
 namespace VacIT.Data.Services
@@ -8,5 +9,6 @@ namespace VacIT.Data.Services
         Task<Profile> GetProfileByLoginInfoIdAsync(int id);
         Task<IEnumerable<Profile>> GetAllProfilesAsync();
         Task<Profile> GetProfileByEmailAsync(string email);
+        Task CreateProfileWithLoginAsync(RegisterVM data);
     }
 }
